@@ -1,0 +1,105 @@
+﻿
+<div class="icon-container">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
+                <div class="icon" data-tooltip="tooltip1">
+                    <img src="@Url.Content("~/images/icons/exchangeproduct.png")" alt="14 Days Return & Exchange">
+                    14 Days Return & Exchange
+                </div>
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
+                <div class="icon" data-tooltip="tooltip2">
+                    <img src="@Url.Content("~/images/vector/mycart.png")" alt="Cash on Delivery">
+                    Cash/Pay on Delivery
+                </div>
+            </button>
+        </li>
+        @* <li class="nav-item" role="presentation">
+            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">
+                <div class="icon" data-tooltip="tooltip3">
+                    <img src="~/images/icons/terms-and-conditions.png" alt="Terms">
+                    Terms & Conditions
+                </div>
+            </button>
+        </li> *@
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+            <div class="tooltip-header">What is 14 Days Return & Exchange?</div>
+            <div class="tooltip-content">
+                <p>Timeline: Return or exchange items within 14 days of delivery.</p>
+                <p>
+                    Condition: Items must be unworn, unwashed, with all original tags intact, and in the original packaging.
+                </p>
+                <p>Non-Returnable: Final Sale items (e.g., clearance, socks, underwear) cannot be returned or exchanged for hygiene/safety.</p>
+                <p>Process: Initiate a return online. Refunds go to the original payment method, and processing takes about (5-10) business days after the item is received.</p>
+                <p>Shipping: Return shipping costs (e.g., are the responsibility of the customer / are free for exchanges / will be deducted from your refund).</p>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+            <div class="tooltip-header">What is Cash/Pay on Delivery?</div>
+            <div class="tooltip-content">
+                <p>Availability: Offered only in select pin codes and for orders under (e.g., ₹5,000 / $100).</p>
+                <p>COD Fee: A small, non-refundable handling fee of [e.g., ₹50 / $2) may apply.</p>
+                <p>Payment: Only exact cash is accepted by the delivery agent. The package can be opened only after payment.</p>
+                <p>Refusal: Customers who refuse a confirmed COD order may be restricted from using the COD option for future purchases.</p>
+            </div>
+        </div>
+        @* <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+            <div class="tooltip-header">Terms & Conditions</div>
+            <div class="tooltip-content">
+                All purchases are subject to our terms and conditions. Please read them carefully before placing your order.
+            </div>
+        </div> *@
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const icons = document.querySelectorAll(".icon");
+        const tooltips = document.querySelectorAll(".tooltip-box");
+
+        // Open tooltip
+        icons.forEach(icon => {
+            icon.addEventListener("click", function (e) {
+                e.stopPropagation();
+
+                // Close all first
+                tooltips.forEach(t => t.style.display = "none");
+
+                const tooltipId = this.getAttribute("data-tooltip");
+                const tooltip = document.getElementById(tooltipId);
+
+                if (tooltip) {
+                    // Position tooltip below the clicked icon (centered)
+                    const rect = this.getBoundingClientRect();
+                    const parentRect = this.closest(".clothing-summery").getBoundingClientRect();
+
+                    tooltip.style.top = rect.bottom - parentRect.top + 10 + "px";
+                    tooltip.style.left = rect.left - parentRect.left + rect.width / 2 + "px";
+                    tooltip.style.transform = "translateX(-50%)";
+                    tooltip.style.display = "block";
+                }
+            });
+        });
+
+        // Close button inside tooltip
+        document.querySelectorAll(".tooltip-close").forEach(closeBtn => {
+            closeBtn.addEventListener("click", function (e) {
+                e.stopPropagation();
+                this.parentElement.style.display = "none";
+            });
+        });
+
+        // Close tooltip when clicking outside
+        window.addEventListener("click", function (e) {
+            if (![...icons].some(icon => icon.contains(e.target)) &&
+                ![...tooltips].some(tooltip => tooltip.contains(e.target))) {
+                tooltips.forEach(t => t.style.display = "none");
+            }
+        });
+    });
+</script>

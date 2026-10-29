@@ -1,0 +1,333 @@
+﻿@{
+    var canonicalUrl = $"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <!-- SEO Meta Tags -->
+    <meta name="keywords" content="@ViewBag.MetaKeywords" />
+    <meta name="description" content="@ViewBag.MetaDescription" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Canonical URL -->
+    <link rel="canonical" href="@Html.Raw(canonicalUrl)" />
+    <link href="@Url.Content("~/css/bootstrap.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/css/style.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/css/responsive.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/css/owl.carousel.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/css/owl.theme.default.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/css/swiper-bundle.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/css/sitefonts.css")" rel="stylesheet" />
+    <link rel="icon" type="image/ico" sizes="32x32" href="@Url.Content("~/images/favicon32.ico")">
+    <link href="@Url.Content("~/toastr/toastr.min.css")" rel="stylesheet" />
+
+    <!-- Jquery -->
+    <script src="@Url.Content("~/js/jquery-3.5.1.js")"></script>
+    <!-- Font Awesome -->
+    <script src="@Url.Content("~/js/fontawesome.min.js")"></script>
+    <!-- Boostrap -->
+    <script src="@Url.Content("~/js/bootstrap.min.js")"></script>
+    <!-- Carousel -->
+    <script src="@Url.Content("~/js/owl.carousel.min.js")"></script>
+    <!-- Swiper -->
+    <script src="@Url.Content("~/js/swiper.min.js")"></script>
+    <!-- toastr -->
+    <script src="@Url.Content("~/toastr/toastr.min.js")"></script>
+    <!-- Extra JS -->
+    <script src="@Url.Content("~/js/extra.js")"></script>
+    
+    <!-- Custom Notification -->
+    <script src="@Url.Content("~/js/custom-notification.js")"></script>
+    
+    <!-- Custom Function -->
+    <script src="@Url.Content("~/js/custom-functions.js")"></script>
+
+    <script type="application/ld+json">
+        {
+          "@@context": "https://schema.org",
+          "@@type": "ClothingStore",
+          "name": "Mini Style",
+          "url": "https://ministyle.in",
+          "logo": "https://ministyle.in/logo.png",
+          "image": "https://ministyle.in/cover-image.jpg",
+          "description": "Mini Style is a premium clothing store for newborns to 12-year-old kids, offering trendy and comfortable outfits for boys and girls in Surat, Gujarat.",
+          "address": {
+            "@@type": "PostalAddress",
+            "streetAddress": "Shop No. 132, 1st Floor, Orchid Harmony, Fire Station, Gaurav Path Road, opp. Palanpor, Pal Gam",
+            "addressLocality": "Surat",
+            "addressRegion": "Gujarat",
+            "postalCode": "395009",
+            "addressCountry": "IN"
+          },
+          "geo": {
+            "@@type": "GeoCoordinates",
+            "latitude": 21.170240,
+            "longitude": 72.831062
+          },
+          "hasMap": "https://maps.app.goo.gl/Yu5QEwj8agkco9hk6",
+          "telephone": "+91 63524 89688",
+          "email": "ministyle.official25@gmail.com",
+          "priceRange": "$$",
+          "openingHours": "Mo-Su 11:00-20:00",
+          "contactPoint": {
+            "@@type": "ContactPoint",
+            "telephone": "+91 63524 89688",
+            "contactType": "Customer Service",
+            "areaServed": "IN",
+            "availableLanguage": "en"
+          },
+          "sameAs": [
+            "https://www.instagram.com/mini_style_official/"
+          ],
+          "keywords": ["Kids Clothing", "Baby Clothes", "Newborn Outfits", "Boys Clothing", "Girls Clothing", "Kids Fashion", "Surat Kids Store"],
+          "productCategory": [
+            "Born Babies Clothing",
+            "Kids Clothing (0-12 years)",
+            "Boys and Girls Fashion"
+          ]
+        }
+    </script>
+</head>
+<body>
+    <div id="videoLoader">
+        <video id="loaderVideo" autoplay muted>            
+            <source src="@Url.Content("~/images/loadervideo.mp4")" type="video/mp4" style="height:200px;"/>
+        </video>
+    </div>
+
+    <header class="ManiHeader">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg">
+                <a class="navbar-brand NavLogo logoSetScreen" href="@Url.Action("index", "Home")">
+                    <img src="@Url.Content("~/images/ministyle.png")" class="img-fluid" alt="Mini Style Logo" />
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Index", "Home")">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Index", "AboutUs")">About</a>
+                        </li>
+                        <li class="nav-item dropdownCustom">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                Fashion
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="@Url.Action("Index", "NewBorn")">New Born</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "Girls")">Girls</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "Boys")">Boys</a>
+                                @* <a class="dropdown-item" href="@Url.Action("Index", "Unisex")">Unisex</a> *@
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Index", "ContactUs")">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <div class="CartoonCart">
+                                <a href="javascript:void(0);"><img src="@Url.Content("~/images/vector/Search.png")" class="img-fluid" alt="Search Clothes" data-bs-toggle="modal" data-bs-target="#searchModal" /></a>
+                                <a href="@Url.Action("Index", "Cart")"><img src="@Url.Content("~/images/vector/addtocart.png")" class="img-fluid" alt="Search Clothes" /></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+        </div>
+    </header>
+
+    <div>
+        @RenderBody()  
+        
+        <div id="loading-element" class="custom-loader">
+            <div class="loader">                
+                <img src="@Url.Content("~/images/loading.gif")" style="height:100px;" />
+            </div>
+            <br />
+        </div>
+    </div>
+
+    <footer class="footerSection">
+        <div class="WrapperContainer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 text-center" id="setFoots">
+                        <div class="headingSection dark">
+                            <h1>Reach Out to Us</h1>
+                            <h2><i class="fas fa-arrow-up"></i>Say Hello!</h2>
+                        </div>
+                    </div>
+                    <div class="col-12 text-center">
+                        <div class="PaymentStipe">
+                            <img src="@Url.Content("~/images/icons/paymentstrip.png")" class="img-fluid" style="max-height:32px;" />
+                        </div>
+                    </div>
+                    <span class="border-shape"></span>
+                    <div class="col-md-12" style="margin-top: 50px;">
+                        <div class="footer-card">
+                            <section>
+                                <span><i class="fas fa-map-marker-alt"></i></span>
+                                <span><a href="https://maps.app.goo.gl/Yu5QEwj8agkco9hk6" target="_blank">Shop No. 132, 1st Floor, Orchid Harmony, opp. Palanpor Fire Station, Nr. Nayarna Petrol Pump, Gaurvapath Road, Pal, Surat, Gujarat 395009</a></span>
+                            </section>
+                            <section>
+                                <span><i class="fas fa-mobile-alt"></i></span>
+                                <span><a href="tel:+916352489688">+91 63524 89688</a> (Available: 11:00 AM – 8:00 PM)</span>
+                            </section>
+                            <section>
+                                <span><i class="fas fa-envelope"></i></span>
+                                <span><a href="mailto:ministyle.official25@gmail.com">ministyle.official25@gmail.com</a></span>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid" id="SubFooter">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12">
+                        <div class="Pull-Left">
+                            <p>Mini Style © <span id="footerDate"></span> - All Rights Reserved.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                        <div class="pull-Right">
+                            <p>Designed & Developed by <a href="https://www.mitsolutions.in/" target="_blank">M iT Solutions</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="BackToTop">
+        <a href="javascript:void(0);"><i class="fas fa-long-arrow-alt-up"></i></a>
+    </div>
+
+    @* Search Modal *@
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 rounded-4 shadow-lg">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-semibold" id="searchModalLabel">Find Your Style</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="searchForm">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search for products" aria-label="Search">
+                            <button class="btn btn-primary" type="submit">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="socailMediaWidget">
+        <div class="social-wrapper" id="socialWrapper">
+            <div class="social-icons" id="socialIcons">
+                @* <a href="https://facebook.com" class="facebook" target="_blank"><i class="fab fa-facebook-f"></i></a> *@
+                <a href="https://www.instagram.com/mini_style_official/" class="instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://maps.app.goo.gl/Yu5QEwj8agkco9hk6" class="location" target="_blank"><i class="fas fa-map-marker-alt"></i></a>
+                <a href="https://wa.me/+916352489688" class="whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <button class="plus-btn" id="plusBtn"><i class="fas fa-link"></i></button>
+        </div>
+    </div>
+
+    <script>
+        $(window).on("load", function () {
+            $("#videoLoader").fadeOut(800, function () {
+                $("#mainContent").fadeIn();
+            });
+        });
+
+        $(document).ready(function () {
+            const $plusBtn = $("#plusBtn");
+            const $socialIcons = $("#socialIcons");
+            const $wrapper = $("#socialWrapper");
+
+            // Toggle icons
+            $plusBtn.on("click", function (e) {
+                e.stopPropagation();
+                $(this).toggleClass("rotate");
+                $socialIcons.toggleClass("show");
+            });
+
+            // Close when clicking outside
+            $(document).on("click", function (e) {
+                if (!$wrapper.is(e.target) && $wrapper.has(e.target).length === 0) {
+                    $plusBtn.removeClass("rotate");
+                    $socialIcons.removeClass("show");
+                }
+            });
+
+            //Add fixed Class in Header
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 100) {
+                    $('.ManiHeader').addClass('fixed');
+                } else {
+                    $('.ManiHeader').removeClass('fixed');
+                }
+            });
+
+            // Show/hide on scroll
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 50) {
+                    $(".BackToTop").css({
+                        opacity: "1",
+                        transform: "translateY(0)"
+                    });
+                } else {
+                    $(".BackToTop").css({
+                        opacity: "0",
+                        transform: "translateY(50px)"
+                    });
+                }
+            });
+
+            $(".BackToTop a").click(function (e) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+
+            $(window).on("scroll", function () {
+                $(".bredcrumbSection").each(function () {
+                    let speed = 0.5;
+                    let yOffset = $(window).scrollTop() * speed;
+                    $(this).css("background-position", "center " + yOffset + "px");
+                });
+            });
+
+            $('.carousel').carousel({
+                interval: 2500
+            });
+            $("#footerDate").text(new Date().getFullYear());
+        });
+    </script>
+
+    <script>
+        $('.SelectionBox .owl-carousel').owlCarousel({
+            loop: false,
+            margin: 10,
+            autoWidth: true,
+            dots: false,
+            nav: false,
+            responsive: {
+                0: { items: 3 },
+                480: { items: 4 },
+                768: { items: 5 },
+                992: { items: 6 },
+                1200: { items: 8 }
+            }
+        });
+    </script>
+    @* @await RenderSectionAsync("Scripts", required: false) *@
+</body>
+</html>

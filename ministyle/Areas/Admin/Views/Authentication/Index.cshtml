@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "Login Page | Mini Style Surat";
+    ViewBag.MetaDescription = "Discover stylish and comfortable clothing for newborns to 12-year-old kids at Mini Style. Shop the best outfits for boys and girls in Surat. Visit us now!";
+    ViewBag.MetaKeywords = "kids clothing store, baby clothes, newborn fashion, boys outfits, girls dresses, kids fashion, Mini Style Surat, best kids wear, children’s apparel, kids shopping";
+    Layout = null;
+    var canonicalUrl = $"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <!-- SEO Meta Tags -->
+    <meta name="keywords" content="@ViewBag.MetaKeywords" />
+    <meta name="description" content="@ViewBag.MetaDescription" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Canonical URL -->
+    <link rel="canonical" href="@Html.Raw(canonicalUrl)" />
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" />
+    <link href="~/css/loginform.css" rel="stylesheet" />
+    <link href="~/css/loginformresponsive.css" rel="stylesheet" />
+    <link href="~/css/sitefonts.css" rel="stylesheet" />
+    <link rel="icon" type="image/ico" sizes="32x32" href="~/favicon32.ico">
+</head>
+
+<body>
+    <section class="loginSection">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="loginForm">
+                        <form class="formrow">
+                            <div class="col-md-12">
+                                <div class="loginformHeading">
+                                    <img src="~/images/MinStyleLogo.png" />
+                                </div>
+                            </div>
+                            <div class="col-md-12 formsection">
+                                <label for="username" class="form-label">Username</label>
+                                <div class="form-gap">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" class="form-control" id="username" name="username" required placeholder="Enter your username" autocomplete="username" aria-label="Username">
+                                </div>
+                            </div>
+                            <div class="col-md-12 formsection">
+                                <label for="exampleInputPassword1" class="form-label">Password</label>
+                                <div class="form-gap">
+                                    <i class="fas fa-lock"></i>
+                                    <input type="password" class="form-control" id="exampleInputPassword1" name="password" required placeholder="Enter your password" autocomplete="current-password" aria-label="Password">
+                                </div>
+                            </div>
+                            @* <div class="col-md-12">
+                            <div class="form-control form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                            </div>
+                        </div> *@
+                            <div class="col-md-12 formsection contentitemdiv">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                    <label class="form-check-label" for="flexCheckChecked">
+                                        Keep me signed in
+                                    </label>
+                                </div>
+                                <a href="javascript:void(0);">
+                                    Forgot your password?
+                                </a>
+                            </div>
+                            <div class="col-md-12 formsection contentitemdiv">
+                                <button type="submit" class="button buttondione" onclick="spinner()">
+                                    <span>
+                                        Sign in
+                                    </span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="~/js/jquery-3.5.1.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/fontawesome.min.js"></script>
+</body>
+
+</html>
+

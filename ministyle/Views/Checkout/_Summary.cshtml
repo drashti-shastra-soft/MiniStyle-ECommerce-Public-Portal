@@ -1,0 +1,24 @@
+﻿@model ministyle.Domain.CartSummary
+@{
+    Layout = null;
+}
+
+<div class="price-summary-item">
+    <span>Total item price</span>
+    <span>@Model.TotalPriceFormatted</span>
+</div>
+<div class="price-summary-item">
+    <span>Item discount</span>
+    <span class="text-success">@Model.DiscountedFormatted</span>
+</div>
+
+<div class="price-summary-item">
+    <span>Shipping fee</span>
+    <span>@Model.ShippingFeeFormatted</span>
+</div>
+<hr>
+<div class="price-summary-item">
+    <span>Total</span>
+    <span>@Model.TotalFormatted</span>
+</div>
+

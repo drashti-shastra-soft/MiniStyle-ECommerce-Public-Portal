@@ -1,0 +1,22 @@
+﻿@model List<ministyle.Domain.Cart>
+@{
+    Layout = null;
+    var count = Model.Count;
+}
+
+<div class="checkoutAccordianBox">
+    @if (Model != null && Model.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+            <div class="AccordianList">
+                <img src="@Url.Content("~/images/productimages/image1.jpg")" class="rounded-3" alt="Kids T-shirt">
+                <div>
+                    <p class="">@item.ProductName</p>
+                    <small class="">Size:@item.Size, Color: Black</small>
+                    <p class="mb-0 mt-1 fw-bold">@item.UnitPriceFormatted</p>
+                </div>
+            </div>
+        }
+    }
+</div>

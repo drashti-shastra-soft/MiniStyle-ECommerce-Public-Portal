@@ -1,0 +1,91 @@
+﻿@model ministyle.Domain.CartViewModel
+@{
+    ViewBag.Title = "Your Shopping Cart | Mini Style Kids Clothing Surat";
+    ViewBag.MetaDescription = "Review your selected kids clothing items at Mini Style. From newborn to 12 years, shop stylish & customized outfits for boys, girls & unisex. Continue to checkout when ready.";
+    ViewBag.MetaKeywords = "kids clothing cart, Mini Style shopping cart, review order, custom kids wear cart, baby clothes online Surat";
+}
+
+<section class="CartSection section-gap">
+    <div class="WrapperContainer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div id="divList">
+                        <partial name="_List" model="@Model.CartItems" />
+                    </div>
+                    
+                </div>
+
+                <div class="col-lg-4 mt-4 mt-lg-0">
+                    <div class="mypricesummerybox">
+                        <div id="divSummary">
+                            <partial name="_Summary" model="@Model.CartSummary" />
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="whychooseBox">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="features-box">
+                                <img src="@Url.Content("~/images/vector/fast-delivery.png")" class="img-fluid" />
+                                <h6>Free Shipping*</h6>
+                                <p class="small text-muted">On orders of ₹999 and above.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="features-box">
+                                <img src="@Url.Content("~/images/vector/product-return.png")" class="img-fluid" />
+                                <h6>14 Days Easy Exchange</h6>
+                                <p class="small text-muted">Exchange with ease – quick, simple, and stress-free for your convenience!</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="features-box">
+                                <img src="@Url.Content("~/images/vector/verified.png")" class="img-fluid" />
+                                <h6>Secure shopping</h6>
+                                <p class="small text-muted">Your details are fully encrypted.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+<script>
+    $(document).ready(function () {
+        fnGetList();
+        setTimeout(function() {
+            fnCartSummary()
+        }, 1000);
+    });
+
+    function fnGetList() {
+        $.ajax({
+            url: '@Url.Action("List", "Cart")',
+            type: 'GET',
+            success: function (response) {
+                $('#divList').html(response);
+            },
+            error: function(xhr, status, error) {
+                $('#divList').html('<p class="error">Failed to load cart summary.</p>');
+            }
+        });
+    }
+
+    function fnCartSummary() {
+        $.ajax({
+            url: '@Url.Action("GetCartSummary", "Cart")',
+            type: 'GET',
+            success: function (response) {
+                $('#divSummary').html(response);
+            },
+            error: function(xhr, status, error) {
+                $('#divSummary').html('<p class="error">Failed to load cart summary.</p>');
+            }
+        });
+    }
+</script>

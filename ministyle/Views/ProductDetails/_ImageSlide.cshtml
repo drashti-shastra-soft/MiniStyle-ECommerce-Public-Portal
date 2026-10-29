@@ -1,0 +1,8 @@
+﻿@{
+    var base64 = ViewData["Base64"] as string;
+    var cssClass = ViewData["CssClass"] as string ?? "";
+}
+
+<div class="swiper-slide">
+    <img src="data:image/jpeg;base64,@base64" class="@cssClass" />
+</div>

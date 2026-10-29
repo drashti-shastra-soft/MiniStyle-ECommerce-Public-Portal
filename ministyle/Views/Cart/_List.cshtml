@@ -1,0 +1,147 @@
+﻿@model List<ministyle.Domain.Cart>
+@{
+    Layout = null;
+    var count = Model.Count;
+}
+
+<div class="CartLeftSection">
+    <h2 class="cart-title">
+        Cart        
+        @if (count == 1)
+        {
+            <span class="text-muted">@count item</span>
+        }
+        else if (count > 1)
+        {
+            <span class="text-muted">@count items</span>
+        }
+        else
+        {
+            <span class="text-muted">is empty :(</span>
+        }
+    </h2>
+</div>
+
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var item in Model)
+    {
+        <div class="Cart-item-Wrapper">
+            <div class="cart-item">
+                <div class="CartProductBox">
+                    <img src="@Url.Content("~/images/productimages/image1.jpg")" alt="Product" class="img-fluid" />
+                    <div class="">
+                        <p class="item-name mb-1">@item.ProductName</p>
+                        <p class="text-muted small mb-1">Size: @item.Size</p>
+                        <p class="item-price">
+                            @item.DiscountedPriceFormatted
+                            <span class="item-old-price">@item.UnitPriceFormatted</span>
+                            <span class="item-discount">@item.DiscountPercentage% off</span>
+                        </p>
+                        @* <div class="cart-operation">
+                            <div class="quantityTable">
+                                <div class="quantity-container space-x-2">
+                                    <a href="javascript:void(0);" class="quantity-btn" data-id="@item.Id" data-qty="-1"><i class="fas fa-minus"></i></a>
+                                    <input type="text" class="quantity-input" value="@item.Qty" readonly>
+                                    <a href="javascript:void(0);" class="quantity-btn" data-id="@item.Id" data-qty="1"><i class="fas fa-plus"></i></a>
+                                </div>
+                            </div>
+                            <a href="javascript:void(0);" class="btn-delete text-danger" data-id="@item.Id">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </div> *@
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="empty-cart-container">
+        <div class="cart-icon">
+            <img src="@Url.Content("~/images/vector/empty-cart.png")" class="img-fluid cart-icon-svg" />
+        </div>
+
+        <div class="empty-cart-text">
+            <h2>There's nothing in here</h2>
+            <p>You have not added any items to your cart yet.</p>
+        </div>
+
+        <div class="mt-4 text-center">
+            <a href="@Url.Action("Index", "Home")" class="btn shop-now-btn">SHOP NOW</a>
+        </div>
+    </div>
+}
+
+<script src="@Url.Content("~/js/custom-functions.js")"></script>
+<script src="@Url.Content("~/js/custom-notification.js")"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.btn-delete').on('click', function() {
+             var id = parseInt($(this).data('id'));
+             if (id > 0) {
+                 fnDelete(id);
+             }
+        });
+        
+        $('.quantity-btn').on('click', function () {
+            $('#loaderVideo').show();
+            
+            const $btn = $(this);
+            const id = parseInt($btn.data('id')) || 0;
+            const delta = parseInt($btn.data('qty')) || 0;
+            
+            const $input = $btn.siblings('.quantity-input');
+            let currentQty = parseInt($input.val()) || 1;
+            
+            const updatedQty = Math.max(1, Math.min(10, currentQty + delta));
+            $input.val(updatedQty);
+            
+            if (id > 0) {
+                fnUpdateQty(id, updatedQty);
+            }
+            
+            setTimeout(() => {
+                $('#loaderVideo').fadeOut(500);
+            }, 800);
+        });
+    });
+
+    function fnDelete(id) {
+        $.ajax({
+            url: `/Cart/Delete/${id}`,
+            type: 'DELETE',
+            dataType: 'json',
+            success: function (response) {
+                showToastr(response.type, response.msg);
+                fnGetList();
+                setTimeout(function() {
+                    fnCartSummary()
+                }, 1000);
+            },
+            error: function () {
+                showToastr("error", "Failed to delete item.");
+            }
+        });
+    }
+
+    function fnUpdateQty(id, qty) {
+        $.ajax({
+            url: `/Cart/UpdateQty?id=${id}&qty=${qty}`,
+            type: 'PATCH',
+            dataType: 'json',
+            success: function (response) {                
+                showToastr(response.type, response.msg);
+                fnGetList();
+                setTimeout(function() {
+                    fnCartSummary()
+                }, 1000);
+            },
+            error: function () {
+                showToastr("error", "Failed to update qty.");
+            }
+        });
+    }
+</script>

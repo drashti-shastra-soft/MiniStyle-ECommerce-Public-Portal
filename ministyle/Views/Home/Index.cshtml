@@ -1,0 +1,488 @@
+﻿@{
+    ViewBag.Title = "Mini Style | Kids Clothing Store in Surat | Newborn to 12 Years";
+    ViewBag.MetaDescription = "Shop the best kids clothing at Mini Style in Surat. Explore stylish outfits for newborns, boys, girls & unisex collections. We also offer customized kids clothing designed as per your requirement";
+    ViewBag.MetaKeywords = "kids clothing Surat, newborn clothes Surat, kids fashion store, customized kids clothing, Mini Style Surat, baby clothes online Surat, children’s wear 0-12 years";
+}
+
+<section class="HomeSlider">
+    <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="false">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="@Url.Content("~/images/slider/demo/slider21.jpg")" class="d-block w-100" alt="Sldier 1" />
+                <div class="carousel-caption d-none d-md-block animated fadeInUp">
+                    <h1>Welcome to Mini Style</h1>
+                    <p>Your Ultimate Destination for Baby Clothing Needs!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="vectorDivision">
+        <img src="@Url.Content("~/images/vector/sldiervector.png")" class="img-fluid" loading="lazy" />
+    </div>
+</section>
+
+<section class="aboutusSection section-gap">
+    <div class="WrapperContainer">
+        <img src="@Url.Content("~/images/vector/cloud.webp")" class="img-fluid cloudfloat cloud1" loading="lazy" />
+        <img src="@Url.Content("~/images/vector/cloud.webp")" class="img-fluid cloudfloat cloud2" loading="lazy" />
+        <img src="@Url.Content("~/images/vector/horse.webp")" class="img-fluid horseFloat" loading="lazy" />
+        <img src="@Url.Content("~/images/vector/lion.webp")" class="img-fluid lionFloat" loading="lazy" />
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="headingSection text-center">
+                        <h3>Little Wardrobe Picks!</h3>
+                        <h2>Creating <span class="color2">Childhood</span> <span class="color3">Memories</span></h2>
+                        <div class="headingDescription">
+                            <p>Explore our magical toy universe and discover the perfect playtime companions for every little adventurer. Let the fun begin!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="setBox">
+                <div class="col-lg-4 col-md-8">
+                    <div class="fashionBox">
+                        <div class="fashionImg">
+                            <img src="https://cdn.prod.website-files.com/64e7a9e2911e97b253725805/64ec6db93e9f2319bd069849_Photo%206.webp" class="img-fluid" loading="lazy" />
+                        </div>
+                        <div class="fashionDesc">
+                            <div class="fashionHeading">
+                                <h3 class="ClipTitle">New Born</h3>
+                                @* <label>(0-3Y)</label> *@
+                            </div>
+                            <p class="valueDesc">Give your baby the softest start with our newborn collection. Crafted from gentle, breathable fabrics for delicate skin. From cozy onesies to daily essentials, comfort comes first. Adorable styles designed for their early milestones.</p>
+                            <div class="contentitemdiv">
+                                <a class="button buttondione" href="@Url.Action("Index", "NewBorn")"><span>Discover More</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-8">
+                    <div class="fashionBox odd">
+                        <div class="fashionImg">
+                            <img src="https://cdn.prod.website-files.com/64e7a9e2911e97b253725805/64ec6db93e9f2319bd069849_Photo%206.webp" class="img-fluid" loading="lazy" />
+                        </div>
+                        <div class="fashionDesc">
+                            <div class="fashionHeading">
+                                <h3 class="ClipTitle">Girls</h3>
+                                @* <label>(2-6Y)</label> *@
+                            </div>
+                            <p class="valueDesc">Charming outfits for little fashionistas, ages 2–12. From twirl-worthy dresses to playful everyday wear. Bright colors, cute prints, and stylish designs she’ll love. Made for comfort, confidence, and endless fun.</p>
+                            <div class="contentitemdiv">
+                                <a class="button buttondione" href="@Url.Action("Index", "Girls")"><span>Discover More</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-8">
+                    <div class="fashionBox">
+                        <div class="fashionImg">
+                            <img src="https://cdn.prod.website-files.com/64e7a9e2911e97b253725805/64ec6db93e9f2319bd069849_Photo%206.webp" class="img-fluid" loading="lazy" />
+                        </div>
+                        <div class="fashionDesc">
+                            <div class="fashionHeading">
+                                <h3 class="ClipTitle">Boys</h3>
+                                @* <label>(7-12Y)</label> *@
+                            </div>
+                            <p class="valueDesc">Trendy, durable, and comfy styles for growing boys. Perfect for school, playtime, or special occasions. Cool prints and smart fits that keep up with his energy. Clothes made to match every adventure, big or small.</p>
+                            <div class="contentitemdiv">
+                                <a class="button buttondione" href="@Url.Action("Index", "Boys")"><span>Discover More</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @* <div class="vectorDivision v1">
+    <img src="/images/vector/sldiervector.png" class="img-fluid" loading="lazy">
+    </div> *@
+</section>
+
+<section class="ourProductsSection section-gap">
+    <div class="WrapperContainer">
+        <img src="@Url.Content("~/images/vector/cloud.webp")" class="img-fluid cloudfloat cloud1" loading="lazy">
+        <img src="@Url.Content("~/images/vector/bigcloud.webp")" class="bigCloud img-fluid" loading="lazy" />
+        <img src="@Url.Content("~/images/vector/fox.webp")" class="img-fluid fox" loading="lazy" />
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="headingSection text-center">
+                        <h3>Interesting About Mini Style</h3>
+                        <h2>
+                            Discover <span class="color2">the </span> <span class="color3">Latest Product</span>
+                        </h2>
+                        <div class="headingDescription">
+                            <p>Explore our latest arrivals of baby clothes, toys, bath essentials, feeding products, and diapering supplies now.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="swiper BestsellarSlider">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="overallBox">
+                                <div class="boxImage">
+                                    <img src="@Url.Content("~/images/babby1.jpg")" class="img-fluid" loading="lazy" />
+                                </div>
+                                <div class="boxDescription">
+                                    <h3>Baby Dress</h3>
+                                    <p>Folk costume, traditional dress, traditional attire or folk attire, is clothing associated with a particular ethnic group, nation or region, and is an expression of cultural, religious or national identity.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="overallBox">
+                                <div class="boxImage">
+                                    <img src="@Url.Content("~/images/baby2.jpg")" class="img-fluid" loading="lazy" />
+                                </div>
+                                <div class="boxDescription">
+                                    <h3>Casual Wear</h3>
+                                    <p>Folk costume, traditional dress, traditional attire or folk attire, is clothing associated with a particular ethnic group, nation or region, and is an expression of cultural, religious or national identity.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="overallBox">
+                                <div class="boxImage">
+                                    <img src="@Url.Content("~/images/babby3.jpg")" class="img-fluid" loading="lazy" />
+                                </div>
+                                <div class="boxDescription">
+                                    <h3>Night Suit</h3>
+                                    <p>Folk costume, traditional dress, traditional attire or folk attire, is clothing associated with a particular ethnic group, nation or region, and is an expression of cultural, religious or national identity.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="overallBox">
+                                <div class="boxImage">
+                                    <img src="@Url.Content("~/images/babby1.jpg")" class="img-fluid" loading="lazy" />
+
+                                </div>
+                                <div class="boxDescription">
+                                    <h3>Baby Dress</h3>
+                                    <p>Folk costume, traditional dress, traditional attire or folk attire, is clothing associated with a particular ethnic group, nation or region, and is an expression of cultural, religious or national identity.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="overallBox">
+                                <div class="boxImage">
+                                    <img src="@Url.Content("~/images/baby2.jpg")" class="img-fluid" loading="lazy" />
+
+                                </div>
+                                <div class="boxDescription">
+                                    <h3>Casual Wear</h3>
+                                    <p>Folk costume, traditional dress, traditional attire or folk attire, is clothing associated with a particular ethnic group, nation or region, and is an expression of cultural, religious or national identity.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="overallBox">
+                                <div class="boxImage">
+                                    <img src="@Url.Content("~/images/babby3.jpg")" class="img-fluid" loading="lazy" />
+                                </div>
+                                <div class="boxDescription">
+                                    <h3>Night Suit</h3>
+                                    <p>Folk costume, traditional dress, traditional attire or folk attire, is clothing associated with a particular ethnic group, nation or region, and is an expression of cultural, religious or national identity.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiperButtonCustom">
+                        <div class="swiper-button-next"><i class="fas fa-chevron-left"></i></div>
+                        <div class="swiper-button-prev"><i class="fas fa-chevron-right"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="vectorDivision">
+        <img src="@Url.Content("~/images/vector/sldiervector.png")" class="img-fluid" loading="lazy">
+    </div>
+</section>
+
+<section class="aboutMoreSection section-gap">
+    <div class="WrapperContainer">
+        <img src="@Url.Content("~/images/vector/bluecrocodile.webp")" class="img-fluid cloud1 crocodile" loading="lazy" />
+        <img src="@Url.Content("~/images/vector/helicopter.webp")" class="img-fluid helicopter" loading="lazy">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="about-left">
+                        <div class="headingSection">
+                            <h3>About Mini Style!</h3>
+                            <h2>
+                                Crafting<span class="color2"> Kids' </span><span class="color3"> Fashion </span>
+                            </h2>
+                        </div>
+                        <div class="aboutministyle">
+                            <p>At Mini Style, we believe that every child deserves clothing that reflects their innocence, comfort, and individuality. From the tiniest newborns to energetic 12-year-olds, we’re here to make their journey of growing up stylish, cozy, and unforgettable.</p>
+                            <p>Our collection is carefully curated to suit every stage of childhood, ensuring that every piece is made with love, comfort, and durability in mind. Whether it's soft onesies for your newborn, playful outfits for toddlers, or trendy styles for pre-teens, we’ve got it all under one roof.</p>
+                            <p>
+                                At Mini Style, we understand that every child is unique, and so should their wardrobe be. Join us in celebrating the magic of childhood, one outfit at a time.
+
+                                Let us be a part of your little one’s milestones, from their first steps to their first school day, with clothing that grows with them. Welcome to Mini Style – Where every outfit tells a story.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="about-right">
+
+                        <div class="achivementCard">
+                            <div class="achiveDesc">
+                                <h2>Premium Quality</h2>
+                                <p>Soft, breathable fabrics that are gentle on delicate skin.</p>
+                            </div>
+                            <div class="achiveImg">
+                                <div class="imgoverlay"></div>
+                                <img src="@Url.Content("~/images/about/Boy.jpg")" class="img-fluid" loading="lazy" />
+                            </div>
+                        </div>
+                        <div class="achivementCard">
+                            <div class="achiveDesc">
+                                <h2>Stylish Variety</h2>
+                                <p>Modern and traditional designs tailored for every occasion.</p>
+                            </div>
+                            <div class="achiveImg">
+                                <div class="imgoverlay"></div>
+                                <img src="@Url.Content("~/images/about/teddy.jpg")" class="img-fluid" loading="lazy" />
+                            </div>
+                        </div>
+                        <div class="achivementCard">
+                            <div class="achiveDesc">
+                                <h2>Affordable Fashion</h2>
+                                <p>Quality clothing that fits your budget.</p>
+                            </div>
+                            <div class="achiveImg">
+                                <div class="imgoverlay"></div>
+                                <img src="@Url.Content("~/images/about/kids.jpg")" class="img-fluid" loading="lazy" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="TestimonialSection">
+    <div class="vectorDivision">
+        <img src="@Url.Content("~/images/vector/sldiervector.png")" class="img-fluid" loading="lazy">
+    </div>
+
+    <div class="vectorDivision saperator2">
+        <img src="@Url.Content("~/images/vector/sldiervector.png")" class="img-fluid" loading="lazy">
+    </div>
+
+    <img src="@Url.Content("~/images/vector/cloud.webp")" class="img-fluid cloudfloat cloud2" loading="lazy">
+    <img src="@Url.Content("~/images/vector/cloud.webp")" class="img-fluid cloudfloat cloud1" loading="lazy">
+    <img src="@Url.Content("~/images/vector/bird.webp")" class="img-fluid flybird" loading="lazy" />
+    <img src="@Url.Content("~/images/vector/runfox.webp")" class="img-fluid runFox" loading="lazy" />
+    <img src="@Url.Content("~/images/vector/bigcloud.webp")" class="img-fluid cloudTestimonial" loading="lazy" />
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="testimonialBox">
+                    <div class="swiper ReviewSlider">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="commentBox">
+                                    <h5>Reviews of happy parents</h5>
+                                    <p>"Absolutely thrilled with the variety of toys at Kiddy! My kids can't get enough of their new treasures. Thank you for making playtime exciting!"</p>
+                                    <h4>~ Jacob's Dad</h4>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="commentBox">
+                                    <h5>Reviews of happy parents</h5>
+                                    <p>"Absolutely thrilled with the variety of toys at Kiddy! My kids can't get enough of their new treasures. Thank you for making playtime exciting!"</p>
+                                    <h4>~ Jacob's Dad</h4>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="commentBox">
+                                    <h5>Reviews of happy parents</h5>
+                                    <p>"Absolutely thrilled with the variety of toys at Kiddy! My kids can't get enough of their new treasures. Thank you for making playtime exciting!"</p>
+                                    <h4>~ Jacob's Dad</h4>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="commentBox">
+                                    <h5>Reviews of happy parents</h5>
+                                    <p>"Absolutely thrilled with the variety of toys at Kiddy! My kids can't get enough of their new treasures. Thank you for making playtime exciting!"</p>
+                                    <h4>~ Jacob's Dad</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="FAQSections section-gap">
+    <div class="WrapperContainer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="headingSection text-center">
+                        <h3>Mini Style FAQs</h3>
+                        <h2>
+                            Frequently <span class="color2">Asked</span> <span class="color3"> Questions</span>
+                        </h2>
+                        <div class="headingDescription">
+                            <p>Have questions about Mini Style? Find all the answers about our kids' clothing, sizes, returns, and more right here!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="FaQcontent">
+                        <div class="accordion" id="accordionExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        What is Mini Style?
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <p>Mini Style is a kids' clothing brand that offers stylish, comfortable, and high-quality apparel for children aged 0 to 12 years. Our collection includes trendy outfits, everyday essentials, and occasion wear designed with love and care.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        What age groups do you cater to?
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <p>We provide clothing for newborns, infants, toddlers, and kids up to 12 years. Our sizes are designed to ensure a perfect fit for every stage of childhood.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        What types of clothing does Mini Style offer?
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <p>Our collection includes:</p>
+                                        <ul>
+                                            <li><i class="fas fa-angle-right mr-1"></i>Casual wear (t-shirts, shorts, jeans, dresses, etc.)</li>
+                                            <li><i class="fas fa-angle-right mr-1"></i>Party wear (stylish frocks, suits, ethnic wear, etc.)</li>
+                                            <li><i class="fas fa-angle-right mr-1"></i>Sleepwear (comfortable nightwear and pajamas)</li>
+                                            <li><i class="fas fa-angle-right mr-1"></i>Seasonal clothing (sweaters, jackets, and summer essentials)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingThree1">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree1" aria-expanded="false" aria-controls="collapseThree1">
+                                        Are your clothes safe for kids’ skin?
+                                    </button>
+                                </h2>
+                                <div id="collapseThree1" class="accordion-collapse collapse" aria-labelledby="headingThree1" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <p>Yes! We use soft, breathable, and skin-friendly fabrics to ensure maximum comfort and safety for your child. Our clothing is made from high-quality materials that are gentle on sensitive skin.</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingThree2">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree2" aria-expanded="false" aria-controls="collapseThree2">
+                                        Do you offer returns and exchanges?
+                                    </button>
+                                </h2>
+                                <div id="collapseThree2" class="accordion-collapse collapse" aria-labelledby="headingThree2" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <p>Yes! We have a hassle-free return and exchange policy. If you receive a wrong size or a defective item, you can request an exchange within a specified period. Please check our return policy for detailed terms.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    $(document).ready(function() {
+        var swiper = new Swiper(".BestsellarSlider", {
+            slidesPerView: 1.5,
+            spaceBetween: 20,
+            centeredSlides: true,
+            freeMode: false,
+            grabCursor: true, // Changed to true for a better user experience
+            loop: true,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            autoplay: {
+                delay: 6000,
+                disableOnInteraction: false, // Changed to false to continue autoplay after interaction
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
+                },
+                768: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3, // Added a breakpoint for larger screens
+                },
+            },
+        });
+
+        var swiper = new Swiper(".ReviewSlider", {
+            slidesPerView: 1.5,
+            spaceBetween: 20,
+            centeredSlides: true,
+            freeMode: false,
+            grabCursor: true, // Changed to true for a better user experience
+            loop: true,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            autoplay: {
+                delay: 6000,
+                disableOnInteraction: false, // Changed to false to continue autoplay after interaction
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
+                },
+                768: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3, // Added a breakpoint for larger screens
+                },
+            },
+        });
+    });
+</script>

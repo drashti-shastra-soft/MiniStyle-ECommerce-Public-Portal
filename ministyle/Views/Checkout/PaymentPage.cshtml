@@ -1,0 +1,94 @@
+﻿@model ministyle.Domain.Order
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head runat="server">
+    <title>Payment | Mini-Style</title>
+    <form action="@Url.Action("CompletePayment", "Checkout")" method="post" name="razorpayForm">
+        <input id="razorpay_payment_id" type="hidden" name="razorpay_payment_id" />
+        <input id="razorpay_order_id" type="hidden" name="razorpay_order_id" />
+        <input id="rzp_amount" type="hidden" name="rzp_amount" />
+        <input id="rzp_FullName" type="hidden" name="rzp_FullName" />
+        <input id="rzp_MobileNumber" type="hidden" name="rzp_MobileNumber" />
+        <input id="rzp_Address" type="hidden" name="rzp_Address" />
+        <input id="rzp_Line1" type="hidden" name="rzp_Line1" />
+        <input id="rzp_Line2" type="hidden" name="rzp_Line2" />
+        <input id="rzp_Landmark" type="hidden" name="rzp_Landmark" />
+        <input id="rzp_ZipCode" type="hidden" name="rzp_ZipCode" />
+        <input id="rzp_City" type="hidden" name="rzp_City" />
+        <input id="rzp_State" type="hidden" name="rzp_State" />
+    </form>
+
+</head>
+
+<body>
+    <button id="rzp-button1" hidden>Pay with Razorpay</button>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        var orderId = "@Model.OrderId";
+        var options = {
+           "key": "@Model.razorpayKey", // Enter the Key ID generated from the Dashboard
+            "amount": "@Model.TotalAmount", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "@Model.FullName",
+            "description": "@Model.Address",
+            "order_id": orderId,
+            "redirect": true,
+            "prefill": {
+                "name": "@Model.FullName",
+                "contact": "@Model.MobileNumber",
+            },
+            "notes": {
+                "address": "@Model.Address"
+            },
+            "theme": {
+                "color": "#528FF0"
+            },
+        }
+        // Boolean whether to show image inside a white frame. (default: true)
+        options.theme.image_padding = false;
+        options.handler = function (response) {
+            document.getElementById('razorpay_payment_id').value = response.razorpay_payment_id;
+            document.getElementById('razorpay_order_id').value = orderId;
+            document.getElementById('rzp_amount').value = @Model.TotalAmount;
+            document.getElementById('rzp_FullName').value = "@Model.FullName";
+            document.getElementById('rzp_MobileNumber').value = "@Model.MobileNumber";
+            document.getElementById('rzp_Address').value = "@Model.Address";
+            document.getElementById('rzp_Line1').value = "@Model.Line1";
+            document.getElementById('rzp_Line2').value = "@Model.Line2";
+            document.getElementById('rzp_Landmark').value = "@Model.Landmark";
+            document.getElementById('rzp_ZipCode').value = "@Model.ZipCode";
+            document.getElementById('rzp_City').value = "@Model.City";
+            document.getElementById('rzp_State').value = "@Model.State";
+            document.razorpayForm.submit();
+        };
+        options.modal = {
+            ondismiss: function () {
+                console.log("This code runs when the popup is closed");
+                window.location.replace("@Url.Action("Failed", "Home")");
+            },
+            // Boolean indicating whether pressing escape key
+            // should close the checkout form. (default: true)
+            escape: true,
+            // Boolean indicating whether clicking translucent blank
+            // space outside checkout form should close the form. (default: false)
+            backdropclose: false
+        };
+        var rzp = new Razorpay(options);
+
+        //<!-- onload function -->
+        window.onload = function () {
+            setTimeout(() => {
+                document.getElementById('rzp-button1').click();
+            }, 500); // 0.5 sec delay
+        };
+
+        document.getElementById('rzp-button1').onclick = function (e) {
+            rzp.open();
+            e.preventDefault();
+        }
+    </script>
+</body>
+</html>

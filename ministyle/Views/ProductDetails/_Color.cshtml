@@ -1,0 +1,19 @@
+﻿@model List<ministyle.Domain.ProductColor>
+
+<h4>More Colors</h4>
+<div class="color-options-section">
+    @if (Model != null && Model.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+            <div class="color-picker">
+                <div class="color-option">
+                    <input type="radio" name="color" id="@item.Color" value="@item.Color" data-id="@item.Id" class="product-color">
+                    <label for="@item.Color" style="background: @item.Color;"></label>
+                </div>
+            </div>
+        }
+        <br />
+        <span id="spnColor" class="text-danger"></span>
+    }
+</div>

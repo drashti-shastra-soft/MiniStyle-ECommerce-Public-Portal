@@ -1,0 +1,7 @@
+﻿@model ministyle.Domain.ProductPrice
+
+@if (Model.DiscountedPrice > default(decimal))
+{
+    <label>@Model.DiscountedPriceFormatted</label>
+}
+<label class="original-price">@Model.SellPriceFormatted</label>

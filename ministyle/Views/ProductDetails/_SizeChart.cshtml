@@ -1,0 +1,85 @@
+﻿@model List<ministyle.Domain.ProductSizeChart>
+
+<!-- Modal -->
+<div class="modal fade" id="sizeChartModal" tabindex="-1" aria-labelledby="sizeChartModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+
+            <!-- Header -->
+            <div class="modal-header">
+                <h5 class="modal-title" id="sizeChartModalLabel">Size Chart</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- Body -->
+            <div class="modal-body sizechartModal">
+                <input type="hidden" id="ProductId" />
+                <div class="row">
+                    <!-- Left Image -->
+                    <div class="col-md-4 text-center">
+                        <img src="https://static.hopscotch.in/fstatic/product/202204/896f9257-d76d-4729-a113-576f7ebda353_full.jpg" alt="Size Guide" class="img-fluid">
+                    </div>
+
+                    <!-- Right Content -->
+                    <div class="col-md-8">
+                        <!-- Tabs -->
+                        <ul class="nav nav-tabs" id="sizeTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a href="javascript:void(0);" class="nav-link active size-chart-nav-tab" id="cm-tab" data-bs-toggle="tab" data-bs-target="#cm" role="tab" aria-controls="cm" aria selected="true" data-unit-type="cm" data-tab="cm">cm</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a href="javascript:void(0);" class="nav-link size-chart-nav-tab" id="in-tab" data-bs-toggle="tab" data-bs-target="#in" role="tab" aria-controls="in" aria selected="false" data-unit-type="in" data-tab="in">in</a>
+                            </li>
+                        </ul>
+
+                        <!-- Tab Content -->
+                        <div class="tab-content mt-3" id="sizeTabContent">
+                            <!-- CM Table -->
+                            <div class="tab-pane fade show active" id="cm" role="tabpanel" aria-labelledby="cm-tab">
+                                
+                            </div>
+
+                            <!-- INCH Table -->
+                            <div class="tab-pane fade" id="in" role="tabpanel" aria-labelledby="in-tab">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $('.size-chart-nav-tab').on('click', function () {            
+            const productId = $('#ProductId').val();
+            const unitType = $(this).data('unit-type');
+            const tab = $(this).data('tab');
+            fetchSizeChart(productId, unitType, tab);
+        });
+
+        $('#cm-tab').trigger('click');
+    });
+
+    function fetchSizeChart(productId, unitType, tab) {
+        $.ajax({
+            url: `/ProductDetails/GetSizeChartRows?productId=${productId}&unitType=${unitType}`,
+            type: "GET",
+            dataType: "html",
+            beforeSend: function () {
+                $('#loading-element').show();
+            },
+            success: function (response) {
+                $('#' + tab).empty().html(response);
+            },
+            error: function (xhr, status, error) {
+                showToastr('error', error);
+            },
+            complete: function () {
+                $('#loading-element').hide();
+            }
+        });
+    }
+
+</script>

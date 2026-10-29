@@ -1,0 +1,627 @@
+@media (min-width: 320px) and (max-width: 575px) {
+    .ManiHeader .navbar {
+        padding: 10px 0px 10px 0;
+    }
+
+    .border-shape {
+        display: none;
+    }
+
+    .headingSection {
+        margin-bottom: 25px;
+    }
+
+    .priceTable label {
+        margin-bottom: 25px;
+    }
+
+    .size-option {
+        margin-bottom: 0 !important;
+    }
+
+    /*.stock-badge{
+        display: none;
+    }*/
+
+    .breadHeading h3 {
+        font-size: 42px;
+    }
+
+    .headingDescription {
+        width: 100%;
+    }
+
+    .CartLeftSection {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .cart-item {
+        display: block;
+    }
+
+        .cart-item img {
+            max-height: 70px;
+            width: 70px;
+        }
+
+    .item-name, .item-price {
+        font-size: 15px;
+    }
+
+    .delete-btn {
+        height: 28px;
+        width: 30px;
+    }
+
+        .delete-btn i {
+            font-size: 14px;
+        }
+
+    .cart-operation select.form-select {
+        height: 30px;
+    }
+
+    .TestimonialSection .vectorDivision.saperator2 {
+        top: -20px;
+    }
+
+    .cloudTestimonial {
+        max-height: 410px;
+    }
+
+    .commentBox p {
+        font-size: 18px !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .skiptranslate iframe {
+        width: 100%;
+    }
+
+    .section-gap {
+        padding: 70px 0;
+    }
+
+    .productInnerDescription h3, .productDetails h3 {
+        font-size: 32px;
+    }
+
+    .productBoard img {
+        min-height: auto;
+    }
+
+    .imgChoose img {
+        max-height: 48px;
+    }
+
+    .FaQcontent h2 button {
+        font-size: 20px;
+    }
+
+    .sheepfloat {
+        display: none;
+    }
+
+    .sheepright {
+        right: 0px;
+        height: 70px;
+    }
+
+    .BackToTop a {
+        height: 45px;
+        width: 45px;
+    }
+
+    .section-gap1 {
+        padding: 0px 0 50px 0;
+    }
+
+    .horseFloat, .lionFloat {
+        display: none
+    }
+
+    .HomeSlider .carousel-item img {
+        height: 500px;
+    }
+
+    #SubFooter .row {
+        margin: 0;
+    }
+
+    .aboutministyle {
+        padding-right: 0;
+    }
+
+    .about-right {
+        padding-left: 0px;
+        border-left: none;
+    }
+
+    .achivementCard {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .achiveDesc p {
+        text-align: center;
+    }
+
+    .achiveDesc {
+        margin-right: 0px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .commentBox p {
+        padding: 0;
+        font-size: 26px;
+    }
+
+    .ourProductsSection .swiper-slide img {
+        min-height: 350px;
+        max-height: 350px;
+    }
+
+    .aboutusInnerSection .vectorDivision {
+        bottom: -50px;
+    }
+
+    #setBox .col-lg-2 {
+        justify-content: left;
+    }
+
+    #setBox > .row {
+        gap: 10px;
+    }
+
+    .footerSection {
+        padding-top: 100px;
+    }
+
+    .main-card .col-md-6.border-end {
+        padding-right: 0px !important;
+        border-right: none !important;
+    }
+
+    .whychooseBox .row {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .Cart-item-Wrapper {
+        padding-left: 20px;
+    }
+
+    .MyClothSlider .swiper-slide img {
+        min-height: auto;
+        max-height: inherit;
+    }
+
+    .overallBox:hover .boxDescription p {
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* Number of lines to show */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .ourProductsSection .swiper-slide img {
+        min-height: 400px;
+        max-height: 400px;
+    }
+
+    .boxDescription h3 {
+        font-size: 24px;
+    }
+
+    .swiperButtonCustom .swiper-button-next,
+    .swiperButtonCustom .swiper-button-prev {
+        height: 50px !important;
+        width: 50px !important;
+    }
+
+    .headingSection h2 {
+        font-size: 30px !important;
+    }
+
+    .overallBox {
+        min-height: 400px;
+    }
+
+    .social-wrapper .plus-btn {
+        width: 50px;
+        height: 50px;
+    }
+
+    .socailMediaWidget {
+        bottom: 70px;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+}
+
+@media (max-width: 991px) {
+    h1, h2, h3, h4, h5, h6 {
+        line-height: initial;
+    }
+
+    .footer-card {
+        display: block;
+    }
+
+        .footer-card section {
+            margin-bottom: 25px;
+        }
+
+    .TestimonialSection .vectorDivision {
+        bottom: -20px;
+    }
+
+        .TestimonialSection .vectorDivision.saperator2 {
+            top: 0;
+        }
+
+    .cloud2 {
+        display: none;
+    }
+
+    #google_translate_element div {
+        gap: 0px;
+    }
+
+    #google_translate_element i.fa-language {
+        left: 128px;
+    }
+
+    .NavLogo {
+        position: inherit;
+        top: 0px;
+        left: 0px;
+        box-shadow: none;
+        padding: 0;
+    }
+
+        .NavLogo img, .ManiHeader.fixed .NavLogo img {
+            max-height: 80px !important;
+        }
+
+    /*.footer .border-shape::after {
+        right: 90px;
+    }
+
+    .footer .border-shape::before {
+        left: 90px;
+    }*/
+
+    .footerSection .row {
+        margin: 0;
+        padding: 0;
+    }
+
+    .ManiHeader {
+        padding: 0px !important;
+    }
+
+        .ManiHeader.fixed .NavLogo {
+            top: 0px;
+        }
+
+    .NavLogo::before, .NavLogo::after {
+        display: none;
+    }
+
+    .vectorDivision {
+        bottom: -5px;
+    }
+
+    .aboutusSection #setBox {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .fashionBox.odd {
+        margin-top: 0;
+    }
+
+    .fashionBox {
+        margin-bottom: 50px;
+    }
+
+    .fox {
+        height: 100px;
+        top: 27%;
+    }
+
+    .bigCloud {
+        height: 200px;
+        top: 25%;
+    }
+
+    .runFox {
+        height: 150px;
+        top: 100px;
+    }
+
+    #setBox {
+        margin-top: 0;
+    }
+
+    .headingSection h2 {
+        font-size: 32px;
+    }
+
+    .boxDescription {
+        padding: 20px 10px;
+    }
+
+        .boxDescription p {
+            font-size: 16px;
+        }
+
+    .achiveImg img {
+        width: 250px;
+    }
+
+    .achiveImg {
+        width: 250px;
+    }
+
+    .imageBox.Imgtop {
+        margin-top: 25px;
+    }
+
+    .imageBox {
+        margin: 25px 25px 0 25px;
+    }
+
+    .galleryBox .row {
+        justify-content: center;
+    }
+
+    .chooseInner {
+        margin-bottom: 50px;
+    }
+
+    .col-lg-3.col-md-6:last-child .chooseInner {
+        margin-bottom: 0;
+    }
+
+    .whychooseUs {
+        padding: 100px 0;
+    }
+
+        .whychooseUs .helicopter {
+            display: none;
+        }
+
+    .crocodileFloat {
+        top: 0;
+        height: 150px;
+        left: 100px;
+    }
+
+    .contacImg {
+        margin-bottom: 50px;
+    }
+
+    .contact-form {
+        margin: 0 25px;
+    }
+
+    .allcloths {
+        margin-top: 25px;
+    }
+
+    .myClothBox.odd {
+        margin-top: 0;
+    }
+
+    .innerProductGallery {
+        margin-bottom: 50px;
+    }
+
+    .productInnerDescription, .innerProductGallery, #productRow {
+        padding: 0;
+    }
+
+    .bredcrumbSection {
+        padding: 200px 0px 150px 0px;
+    }
+
+    .footer-card section:last-child {
+        margin-bottom: 0;
+    }
+
+    .SelectionBox .nav-item .nav-link, .filterBox a, .filter-dropdown-container button {
+        font-size: 16px;
+    }
+
+    .filter-dropdown-container button {
+        padding: 10px 10px;
+    }
+
+    #setBox .col-lg-2 {
+        justify-content: flex-start;
+    }
+
+    .BoysLayout #divList > .row, .NewBornLayout #divList > .row, .BoysLayout #divList > .row, #setBox #divList > .row {
+        gap: 10px;
+    }
+
+    .myClothBoxDescription h2, .product-price {
+        font-size: 18px;
+    }
+
+    .myClothBoxImages img, .myClothBoxImages {
+        min-height: auto;
+        border-radius: 10px;
+    }
+
+    .myClothBoxImages {
+        padding: 5px;
+    }
+
+    .InnerClothSliderSection {
+        padding-right: 0px;
+    }
+
+    .myproductsSection {
+        padding-top: 120px !important;
+    }
+
+    .productInnerDescription {
+        margin-top: 50px;
+    }
+
+        .productInnerDescription h3, .productDetails h3 {
+            margin-bottom: 0;
+        }
+
+    .CartSection {
+        padding-top: 120px !important;
+    }
+
+    .myClothBox {
+        overflow: inherit;
+    }
+
+    .myClothBoxDescription {
+        position: absolute;
+        bottom: -30px;
+        background: #ffffff;
+        /* backdrop-filter: blur(5px); */
+        width: 90%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 11;
+        flex-direction: column;
+        justify-content: center;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+        text-align: center;
+        margin-top: 0;
+        border-radius: 5px;
+        padding: 10px;
+        align-items: center;
+    }
+
+        .myClothBoxDescription::before {
+            display: none;
+        }
+
+        .myClothBoxDescription h2 {
+            margin-left: 0;
+        }
+
+    .price-box-container {
+        justify-content: center;
+        margin: auto;
+    }
+
+    .icon-container {
+        justify-content: center;
+    }
+
+    .icon {
+        flex: 1 1 45%;
+    }
+
+        .icon:before {
+            display: none;
+        }
+
+    .tooltip-box {
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 95vw;
+    }
+}
+
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .section-gap {
+        padding: 70px 0;
+    }
+
+
+    .horseFloat {
+        width: 70px
+    }
+
+    .lionFloat {
+        top: 40px;
+        width: 70px;
+    }
+
+    .HomeSlider .carousel-item img {
+        height: 650px;
+    }
+
+    .sheepfloat {
+        left: 110px;
+        height: 120px;
+    }
+
+    .sheepright {
+        z-index: -1;
+        right: -20px;
+        height: 130px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+
+    .ManiHeader {
+        width: 100%;
+        border-radius: 0px;
+    }
+
+    .sheepfloat {
+        left: 110px;
+        height: 150px;
+    }
+
+    .sheepright {
+        right: -20px;
+        height: 150px;
+    }
+
+    .NavLogo img, .ManiHeader.fixed .NavLogo img {
+        max-height: 110px;
+    }
+
+    .NavLogo {
+        left: 0;
+    }
+
+    /* .allcloths {
+        margin-top: 25px;
+    }*/
+
+}
+
+@media (min-width: 1200px) and (max-width: 1400px) {
+    .WrapperContainer {
+        max-width: 1250px;
+    }
+}
+
+@media (min-width: 992px) {
+    .CartSection {
+        padding-top: 150px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1399px) {
+}
+
+@media (max-width: 1399px) {
+    #SubFooter .row {
+        margin: 0;
+        padding: 0;
+    }
+}

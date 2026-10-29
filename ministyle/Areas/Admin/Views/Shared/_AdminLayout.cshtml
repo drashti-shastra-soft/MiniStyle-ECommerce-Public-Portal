@@ -1,0 +1,34 @@
+﻿@{
+    var canonicalUrl = $"{Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <!-- SEO Meta Tags -->
+    <meta name="keywords" content="@ViewBag.MetaKeywords" />
+    <meta name="description" content="@ViewBag.MetaDescription" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Canonical URL -->
+    <link rel="canonical" href="@Html.Raw(canonicalUrl)" />
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" />
+    <link href="~/css/loginform.css" rel="stylesheet" />
+    <link href="~/css/responsive.css" rel="stylesheet" />
+    <link href="~/css/sitefonts.css" rel="stylesheet" />
+    <link rel="icon" type="image/ico" sizes="32x32" href="~/favicon32.ico">
+</head>
+
+<body>
+    <div>
+        @RenderBody()
+    </div>
+
+    <script src="~/js/jquery-3.5.1.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/fontawesome.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,328 @@
+﻿@model ministyle.Domain.CartViewModel
+@{
+    ViewBag.Title = "Check out | Mini Style - Born Babies to 12 Years";
+    ViewBag.MetaDescription = "Explore our premium collection of kids’ clothing for newborns to 12 years old. From comfy baby wear to trendy outfits for boys & girls, find the best fashion at Mini Style!";
+    ViewBag.MetaKeywords = "kids dresses, baby rompers, boys t-shirts, girls frocks, toddler clothing, infant apparel, children’s fashion, Mini Style products, Surat kids wear";
+}
+
+<section class="myproductsSection section-gap">
+    <div class="WrapperContainer">
+        <div class="container-fluid cart-container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8 col-md-12">
+                    <div class="main-card">
+                        <div class="row">
+                            <!-- Left Side: Wizard -->
+                            <div class="col-md-6 border-end">
+                                <!-- Step 2: Shipping -->
+                                <div class="wizard-step mb-4" id="ship-to-step">
+                                    <span class="step-number">1</span>
+                                    <div>
+                                        <div class="step-title">Ship to</div>
+                                        <div class="text-muted small">Add your shipping address</div>
+                                    </div>
+                                </div>
+                                <div class="wizard-content" id="ship-to-content">
+                                    <h4 class="mb-3">Add your shipping address</h4>
+
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control p-2" id="FullName" placeholder="Full Name" required>
+                                        <div class="invalid-feedback">Full name is required.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control p-2" id="Line1" placeholder="Street Address (Line 1)" required>
+                                        <div class="invalid-feedback">Street address is required.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control p-2" id="Line2" placeholder="Street Address (Line 2 - optional)">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control p-2" id="LandMark" placeholder="LandMark" required>
+                                        <div class="invalid-feedback">LandMark is required.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control p-2" id="City" placeholder="City" required>
+                                        <div class="invalid-feedback">City is required.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control p-2" id="State" placeholder="State" required>
+                                        <div class="invalid-feedback">State/Province is required.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="number" class="form-control p-2" id="ZipCode" placeholder="Zip Code" required>
+                                        <div class="invalid-feedback">Zip code is required.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="number" class="form-control p-2" id="MobileNumber" placeholder="Mobile Number" required>
+                                        <div class="invalid-feedback">Mobile Number is required.</div>
+                                    </div>
+                                    <a href="Javascript:Void(0);" type="submit" class="btn btn-pink w-100 mt-3 save-address">SAVE</a>
+                                </div>
+                            </div>
+
+                            <!-- Right Side: Accordions -->
+                            <div class="col-md-6 ps-md-5 mt-4 mt-md-0">
+                                <div class="accordion" id="checkoutAccordion">
+                                    <!-- Item Summary Accordion -->
+                                    <div class="accordion-item rounded-3 mb-3">
+                                        <h2 class="accordion-header" id="itemSummaryHeading">
+                                            <button class="accordion-button rounded-3 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#itemSummaryCollapse" aria-expanded="false" aria-controls="itemSummaryCollapse">
+                                                Item Summary
+                                            </button>
+                                        </h2>
+                                        <div id="itemSummaryCollapse" class="accordion-collapse collapse" aria-labelledby="itemSummaryHeading" data-bs-parent="#checkoutAccordion">
+                                            <div class="accordion-body">
+                                                <!-- Dummy Item List -->
+                                                <div id="divList">
+                                                    <partial name="_List" model="@Model.CartItems" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Price Summary Accordion -->
+                                    <div class="accordion-item rounded-3">
+                                        <h2 class="accordion-header" id="priceSummaryHeading">
+                                            <button class="accordion-button rounded-3" type="button" data-bs-toggle="collapse" data-bs-target="#priceSummaryCollapse" aria-expanded="true" aria-controls="priceSummaryCollapse">
+                                                Price Summary
+                                            </button>
+                                        </h2>
+                                        <div id="priceSummaryCollapse" class="accordion-collapse collapse show" aria-labelledby="priceSummaryHeading" data-bs-parent="#checkoutAccordion">
+                                            <div class="accordion-body">
+                                                <p class="text-muted small">Includes GST and all government taxes.</p>
+                                                <div id="divSummary">
+                                                    <partial name="_Summary" model="@Model.CartSummary" />
+                                                </div>
+                                                <hr>
+                                                <div class="price-summary-total">
+                                                    <a href="Javascript:void(0);" class="checkout-btn Check">Checkout</a>
+                                                </div>
+                                                <div class="secure-checkout">
+                                                    <i class="fas fa-lock"></i>
+                                                    Secure checkout
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    $(document).ready(function () {
+        fnGetList();
+        setTimeout(function () {
+            fnCartSummary();
+        }, 1000);
+
+        const $mobileContent = $("#mobile-content");
+        const $shippingContent = $("#ship-to-content");
+        const $mobileStep = $("#mobile-step");
+        const $shipToStep = $("#ship-to-step");
+
+        const storedUser = JSON.parse(localStorage.getItem("userData"));
+
+        if (storedUser) {
+            // Show shipping form directly
+            $mobileContent.hide();
+            $shippingContent.show();
+            $mobileStep.removeClass("active");
+            $shipToStep.addClass("active");
+
+            // Populate form fields
+            $('#FullName').val(storedUser.fullName);
+            $('#Line1').val(storedUser.line1);
+            $('#Line2').val(storedUser.line2);
+            $('#LandMark').val(storedUser.landMark);
+            $('#ZipCode').val(storedUser.zipCode);
+            $('#City').val(storedUser.city);
+            $('#State').val(storedUser.state);
+            $('#MobileNumber').val(storedUser.mobileNumber);
+        } else {
+            // First time: show mobile form
+            $mobileContent.show();
+            // $shippingContent.hide();
+        }
+
+        // Save address
+        $('.save-address').on('click', function (e) {
+            e.preventDefault();
+            if (fnValidation()) {
+                fnSave();
+            }
+        });
+
+        $('.Check').on('click', function (e) {
+            e.preventDefault();
+            fnSaveSummary();
+        });
+    });
+
+    function fnValidation() {
+        let isValid = true;
+
+        // Full Name
+        if (!$('#FullName').val().trim()) {
+            $('#FullName').addClass('is-invalid');
+            isValid = false;
+        } else if ($('#FullName').val().length > 50) {
+            $('#FullName').addClass('is-invalid');
+            $('#FullName').next('.invalid-feedback').text('Full name cannot exceed 50 characters.');
+            isValid = false;
+        } else {
+            $('#FullName').removeClass('is-invalid');
+            $('#FullName').next('.invalid-feedback').text('Full name is required.');
+        }
+
+        // Line 1
+        if (!$('#Line1').val().trim()) {
+            $('#Line1').addClass('is-invalid');
+            isValid = false;
+        } else if ($('#Line1').val().length > 50) {
+            $('#Line1').addClass('is-invalid');
+            $('#Line1').next('.invalid-feedback').text('Street address cannot exceed 50 characters.');
+            isValid = false;
+        } else {
+            $('#Line1').removeClass('is-invalid');
+            $('#Line1').next('.invalid-feedback').text('Street address is required.');
+        }
+
+        // LandMark
+        if (!$('#LandMark').val().trim()) {
+            $('#LandMark').addClass('is-invalid');
+            isValid = false;
+        } else if ($('#LandMark').val().length > 50) {
+            $('#LandMark').addClass('is-invalid');
+            $('#LandMark').next('.invalid-feedback').text('LandMark cannot exceed 50 characters.');
+            isValid = false;
+        } else {
+            $('#LandMark').removeClass('is-invalid');
+            $('#LandMark').next('.invalid-feedback').text('LandMark is required.');
+        }
+
+        // City
+        if (!$('#City').val().trim()) {
+            $('#City').addClass('is-invalid');
+            isValid = false;
+        } else if ($('#City').val().length > 50) {
+            $('#City').addClass('is-invalid');
+            $('#City').next('.invalid-feedback').text('City cannot exceed 50 characters.');
+            isValid = false;
+        } else {
+            $('#City').removeClass('is-invalid');
+            $('#City').next('.invalid-feedback').text('City is required.');
+        }
+
+        // State
+        if (!$('#State').val().trim()) {
+            $('#State').addClass('is-invalid');
+            isValid = false;
+        } else if ($('#State').val().length > 50) {
+            $('#State').addClass('is-invalid');
+            $('#State').next('.invalid-feedback').text('State Province cannot exceed 50 characters.');
+            isValid = false;
+        } else {
+            $('#State').removeClass('is-invalid');
+            $('#State').next('.invalid-feedback').text('State Province is required.');
+        }
+
+        // Zip Code
+        const zipCode = $('#ZipCode').val().trim();
+        if (!zipCode || zipCode.length < 4 || zipCode.length > 8) {
+            $('#ZipCode').addClass('is-invalid');
+            isValid = false;
+        } else {
+            $('#ZipCode').removeClass('is-invalid');
+        }
+
+        //Mobile Number
+        const mobileNumber = $('#MobileNumber').val().trim();
+        if (!mobileNumber || mobileNumber.length < 10) {
+            $('#MobileNumber').addClass('is-invalid');
+            isValid = false;
+        } else {
+            $('#MobileNumber').removeClass('is-invalid');
+        }
+
+        return isValid;
+    }
+
+    function fnSave() {
+        var mOrder = {};
+        mOrder.fullName = $('#FullName').val();
+        mOrder.mobileNumber = $('#MobileNumber').val();
+        mOrder.line1 = $('#Line1').val();
+        mOrder.line2 = $('#Line2').val();
+        mOrder.landMark = $('#LandMark').val();
+        mOrder.zipCode = $('#ZipCode').val();
+        mOrder.city = $('#City').val();
+        mOrder.state = $('#State').val();
+
+        localStorage.setItem("userData", JSON.stringify(mOrder));
+    }
+
+    function fnGetList() {
+        $.ajax({
+            url: '@Url.Action("List", "Cart")',
+            type: 'GET',
+            success: function (response) {
+                $('#divList').html(response);
+            },
+            error: function (xhr, status, error) {
+                $('#divList').html('<p class="error">Failed to load cart summary.</p>');
+            }
+        });
+    }
+
+    function fnCartSummary() {
+        $.ajax({
+            url: '@Url.Action("GetCartSummary", "Checkout")',
+            type: 'GET',
+            success: function (response) {
+                $('#divSummary').html(response);
+            },
+            error: function (xhr, status, error) {
+                $('#divSummary').html('<p class="error">Failed to load cart summary.</p>');
+            }
+        });
+    }
+
+    function fnSaveSummary() {
+        var mOrder = {};
+        mOrder.fullName = $('#FullName').val();
+        mOrder.line1 = $('#Line1').val();
+        mOrder.line2 = $('#Line2').val();
+        mOrder.landMark = $('#LandMark').val();
+        mOrder.mobileNumber = $('#MobileNumber').val();
+        mOrder.zipCode = $('#ZipCode').val();
+        mOrder.city = $('#City').val();
+        mOrder.state = $('#State').val();
+        mOrder.address = `${mOrder.line1}, ${mOrder.line2}, ${mOrder.landMark}, ${mOrder.city}, ${mOrder.state} - ${mOrder.zipCode} ${mOrder.mobileNumber}`;
+
+        var Url = '@Url.Action("CreateOrder", "Checkout")';
+
+        Url += '?mAddress=' + encodeURIComponent(mOrder.address);
+        Url += '&mFullName=' + encodeURIComponent(mOrder.fullName);
+        Url += '&mMobile=' + encodeURIComponent(mOrder.mobileNumber);
+        Url += '&mLine1=' + encodeURIComponent(mOrder.line1);
+        Url += '&mLine2=' + encodeURIComponent(mOrder.line2);
+        Url += '&LandMark=' + encodeURIComponent(mOrder.landMark);
+        Url += '&ZipCode=' + encodeURIComponent(mOrder.zipCode);
+        Url += '&MobileNumber=' + encodeURIComponent(mOrder.mobileNumber);
+        Url += '&City=' + encodeURIComponent(mOrder.city);
+        Url += '&State=' + encodeURIComponent(mOrder.state);
+
+        window.location.href = Url;
+    }
+
+</script>
+
+
+
+

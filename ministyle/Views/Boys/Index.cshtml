@@ -1,0 +1,84 @@
+﻿@model ministyle.Domain.ProductLister
+@{
+    ViewBag.Title = "Boys Clothing in Surat | Stylish & Customized Outfits – Mini Style";
+    ViewBag.MetaDescription = "Discover stylish boys’ clothing at Mini Style, Surat. From casual wear to party outfits, we offer trendy & customized boys fashion for ages 0 to 12 years.";
+    ViewBag.MetaKeywords = "boys clothing Surat, kids fashion boys, boys outfits 0-12 years, custom boys wear, children’s clothing Surat, Mini Style boys clothes";
+}
+
+<section class="bredcrumbSection contactBread">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadHeading">
+                    <h3>Boys</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="vectorDivision">
+        <img src="@Url.Content("~/images/vector/sldiervector.png")" class="img-fluid" loading="lazy" />
+    </div>
+</section>
+
+<section class="myproductsSection section-gap">
+    <div class="WrapperContainer">
+        <img src="@Url.Content("~/images/vector/sheep.webp")" class="img-fluid sheepfloat" loading="lazy" />
+        <img src="@Url.Content("~/images/vector/sheepright.webp")" class="img-fluid sheepright" loading="lazy" />
+        <img src="@Url.Content("~/images/vector/cloud.webp")" class="img-fluid cloudfloat cloud2" loading="lazy">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="headingSection text-center">
+                        <h3>Because Your Loved Ones Deserve the Best</h3>
+                        <h2>
+                            Discover <span class="color2">the </span> <span class="color3">Softest Essentials</span>
+                        </h2>
+                        <div class="headingDescription">
+                            <p>Wrap your little one in comfort with our latest collection of newborn clothing, blankets, and cozy accessories.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row BoysLayout" id="setBox">
+                @using (Html.AjaxBeginForm("List", "Boys", new AjaxOptions
+                {
+                    HttpMethod = "POST",
+                    UpdateTargetId = "divList",
+                    LoadingElementId = "loading-element"
+                }, new { id = "frmList" }))
+                {
+                    <div id="divList">
+                        <partial name="_List" model="@Model" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="vectorDivision">
+        <img src="@Url.Content("~/images/vector/sldiervector.png")" class="img-fluid" loading="lazy">
+    </div>
+</section>
+
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            url: '@Url.Action("List", "Boys")',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify('@Model'),
+            beforeSend: function () {
+                $('#loading-element').show();
+            },
+            success: function (response) {
+                $('#divList').html(response);
+            },
+            error: function (xhr) {
+                $('#divList').html('<p>Error loading data.</p>');
+            },
+            complete: function () {
+                $('#loading-element').hide();
+            }
+        });
+    });
+
+</script>

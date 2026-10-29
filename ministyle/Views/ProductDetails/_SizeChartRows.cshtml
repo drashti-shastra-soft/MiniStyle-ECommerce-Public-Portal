@@ -1,0 +1,30 @@
+﻿@model List<ministyle.Domain.ProductSizeChart>
+<table class="table table-bordered text-center align-middle">
+    <thead class="table-light">
+        <tr>
+            <th>Age</th>
+            <th>Shoulder</th>
+            <th>Top Length</th>
+            <th>Chest</th>
+            <th>Bottom Length</th>
+            <th>Waist</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Count > default(int))
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.AgeGroup</td>
+                    <td>@item.Shoulder</td>
+                    <td>@item.TopLength</td>
+                    <td>@item.Chest</td>
+                    <td>@item.BottomLength</td>
+                    <td>@item.Waist</td>
+                </tr>
+            }
+        }
+        
+    </tbody>
+</table>

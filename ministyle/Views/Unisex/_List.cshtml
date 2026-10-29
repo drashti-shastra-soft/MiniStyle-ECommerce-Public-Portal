@@ -1,0 +1,521 @@
+﻿@model ministyle.Domain.ProductLister
+
+@{
+    Layout = null;
+}
+<div class="row">
+    <div class="col-lg-10">
+        <div class="SelectionBox">
+            <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                @if (ViewBag.SubCategories != null && ViewBag.SubCategories is List<ministyle.Domain.SubCategory>)
+                {
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">View All</button>
+                    </li>
+
+                    @foreach (var item in ViewBag.SubCategories)
+                    {
+                        var mSubCategory = (ministyle.Domain.SubCategory)item;
+
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">@mSubCategory.Name</button>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-2">
+        <div class="filter-dropdown-container">
+            <div class="btn-group">
+                <button type="button" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Sort By <i class="fas fa-plus"></i>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Recommended</a></li>
+                    <li><a class="dropdown-item" href="#">Newest</a></li>
+                    <li><a class="dropdown-item" href="#">Lowest Price</a></li>
+                    <li><a class="dropdown-item" href="#">Highest Price</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    @*  <div class="col-lg-2">
+        <div class="filterBox" style="text-align: right">
+            <a href="javascript:void(0);" class="openFilter">Filter <i class="fas fa-filter"></i></a>
+        </div>
+
+        <div class="filterOverlay"></div>
+
+        <div class="filterRightSection">
+            <div class="filterHeading">
+                <h3>Filter</h3>
+                <button type="button" class="closeFilter"><i class="fas fa-times"></i></button>
+            </div>
+
+            <div class="accordion" id="filterAccordion">
+                <!-- Price Range Accordion -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingPrice">
+                        <button class="accordion-button d-flex align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePrice" aria-expanded="true" aria-controls="collapsePrice">
+                            PRICE RANGE
+                        </button>
+                    </h2>
+                    <div id="collapsePrice" class="accordion-collapse collapse show" aria-labelledby="headingPrice" data-bs-parent="#filterAccordion">
+                        <div class="accordion-body">
+                            <div class="price-range">
+                                <div class="range-values">
+                                    <span id="minPrice">399.00</span>
+                                    <span id="maxPrice">6999.00</span>
+                                </div>
+                                <div class="slider-container">
+                                    <input type="range" id="rangeMin" min="399" max="6999" value="399" step="1">
+                                    <input type="range" id="rangeMax" min="399" max="6999" value="6999" step="1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Occasion -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="occasionHeading">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#occasionCollapse" aria-expanded="false" aria-controls="occasionCollapse">
+                            Occasion
+                        </button>
+                    </h2>
+                    <div id="occasionCollapse" class="accordion-collapse collapse" aria-labelledby="occasionHeading" data-bs-parent="#filterAccordion">
+                        <div class="accordion-body">
+                            <div class="subsortingSection">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="occasionCasual">
+                                    <label class="form-check-label" for="occasionCasual">Casual</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="occasionEssentials">
+                                    <label class="form-check-label" for="occasionEssentials">Essentials</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="occasionParty">
+                                    <label class="form-check-label" for="occasionParty">Party</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Age -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="colourHeading">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#ageCollapse" aria-expanded="false" aria-controls="ageCollapse">
+                            Age
+                        </button>
+                    </h2>
+                    <div id="ageCollapse" class="accordion-collapse collapse" aria-labelledby="colourHeading" data-bs-parent="#filterAccordion">
+                        <div class="accordion-body">
+                            <div class="subsortingSection">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="age0to3">
+                                    <label class="form-check-label" for="age0to3">0 – 3 month</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="age3to6">
+                                    <label class="form-check-label" for="age3to6">3 – 6 month</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="age6to9">
+                                    <label class="form-check-label" for="age6to9">6 – 9 month</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="age9to12">
+                                    <label class="form-check-label" for="age9to12">9 – 12 month</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="age1to2">
+                                    <label class="form-check-label" for="age1to2">1 – 2 year</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="age2to3">
+                                    <label class="form-check-label" for="age2to3">2 – 3 year</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="age3to4">
+                                    <label class="form-check-label" for="age3to4">3 – 4 year</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Colour -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="colourHeading">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#colourCollapse" aria-expanded="false" aria-controls="colourCollapse">
+                            COLOUR
+                        </button>
+                    </h2>
+                    <div id="colourCollapse" class="accordion-collapse collapse" aria-labelledby="colourHeading" data-bs-parent="#filterAccordion">
+                        <div class="accordion-body">
+                            <div class="subsortingSection">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox">
+                                    <div class="FabricColor Rainbows"></div>
+                                    <label class="form-check-label">Rainbows</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox">
+                                    <div class="FabricColor YellowColor"></div>
+                                    <label class="form-check-label">Yellow</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox">
+                                    <div class="FabricColor colorOrange"></div>
+                                    <label class="form-check-label">Orange</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox">
+                                    <div class="FabricColor colorRed"></div>
+                                    <label class="form-check-label">Red</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox">
+                                    <div class="FabricColor colorPink"></div>
+                                    <label class="form-check-label">Pink</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox">
+                                    <div class="FabricColor colorPurple"></div>
+                                    <label class="form-check-label">Purples</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox">
+                                    <div class="FabricColor BlueColor"></div>
+                                    <label class="form-check-label">Blue</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox">
+                                    <div class="FabricColor colorGreens"></div>
+                                    <label class="form-check-label">Greens</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox">
+                                    <div class="FabricColor colorWhite"></div>
+                                    <label class="form-check-label">White</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Size -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="sizeHeading">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#StyleCollapse" aria-expanded="false" aria-controls="StyleCollapse">
+                            Style
+                        </button>
+                    </h2>
+                    <div id="StyleCollapse" class="accordion-collapse collapse" aria-labelledby="sizeHeading" data-bs-parent="#StyleCollapse">
+                        <div class="accordion-body">
+                            <div class="subsortingSection">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="StyleShortsSet">
+                                    <label class="form-check-label" for="StyleShortsSet">Shorts Set</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="StyleSkirtsSet">
+                                    <label class="form-check-label" for="StyleSkirtsSet">Skirts Set</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="StylePantsSet">
+                                    <label class="form-check-label" for="StylePantsSet">Pants Set</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="StyleTees">
+                                    <label class="form-check-label" for="StyleTees">Tees</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="StyleShirts">
+                                    <label class="form-check-label" for="StyleShirts">Shirts</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="StyleFrocks">
+                                    <label class="form-check-label" for="StyleFrocks">Frocks</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="StyleLeggings">
+                                    <label class="form-check-label" for="StyleLeggings">Leggings</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="StylePant">
+                                    <label class="form-check-label" for="StylePant">Pant</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="StyleSkirts">
+                                    <label class="form-check-label" for="StyleSkirts">Skirts</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="StyleShorts">
+                                    <label class="form-check-label" for="StyleShorts">Shorts</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pattern -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="patternHeading">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#patternCollapse" aria-expanded="false" aria-controls="patternCollapse">
+                            Pattern
+                        </button>
+                    </h2>
+                    <div id="patternCollapse" class="accordion-collapse collapse" aria-labelledby="patternHeading" data-bs-parent="#filterAccordion">
+                        <div class="accordion-body">
+                            <div class="subsortingSection">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="patternFloral">
+                                    <label class="form-check-label" for="patternFloral">Floral</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="patternStripes">
+                                    <label class="form-check-label" for="patternStripes">Stripes</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="patternPolka">
+                                    <label class="form-check-label" for="patternPolka">Polka Dots</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="patternAllOver">
+                                    <label class="form-check-label" for="patternAllOver">All Over Print</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="patternAnimal">
+                                    <label class="form-check-label" for="patternAnimal">Animal Print</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="patternFruits">
+                                    <label class="form-check-label" for="patternFruits">Fruits Print</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Sleeve Length -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="sleeveHeading">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sleeveCollapse" aria-expanded="false" aria-controls="sleeveCollapse">
+                            Sleeve Length
+                        </button>
+                    </h2>
+                    <div id="sleeveCollapse" class="accordion-collapse collapse" aria-labelledby="sleeveHeading" data-bs-parent="#filterAccordion">
+                        <div class="accordion-body">
+                            <div class="subsortingSection">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="sleeveFull">
+                                    <label class="form-check-label" for="sleeveFull">Full Sleeve</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="sleeveHalf">
+                                    <label class="form-check-label" for="sleeveHalf">Half Sleeve</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="sleeveSleeveless">
+                                    <label class="form-check-label" for="sleeveSleeveless">Sleeveless</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="sleeveQuarter">
+                                    <label class="form-check-label" for="sleeveQuarter">1/4th Sleeve</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="sleeveThreeQuarter">
+                                    <label class="form-check-label" for="sleeveThreeQuarter">3/4th Sleeve</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Collar -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="collarHeading">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collarCollapse" aria-expanded="false" aria-controls="collarCollapse">
+                            Collar
+                        </button>
+                    </h2>
+                    <div id="collarCollapse" class="accordion-collapse collapse" aria-labelledby="collarHeading" data-bs-parent="#filterAccordion">
+                        <div class="accordion-body">
+                            <div class="subsortingSection">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="collarPolo">
+                                    <label class="form-check-label" for="collarPolo">Polo Collar</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="collarStand">
+                                    <label class="form-check-label" for="collarStand">Stand Collar</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="collarRegular">
+                                    <label class="form-check-label" for="collarRegular">Regular Collar</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="collarPeterPan">
+                                    <label class="form-check-label" for="collarPeterPan">Peter Pan Collar</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="collarCuban">
+                                    <label class="form-check-label" for="collarCuban">Cuban Collar</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fabric -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="fabricHeading">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fabricCollapse" aria-expanded="false" aria-controls="fabricCollapse">
+                            Fabric
+                        </button>
+                    </h2>
+                    <div id="fabricCollapse" class="accordion-collapse collapse" aria-labelledby="fabricHeading" data-bs-parent="#filterAccordion">
+                        <div class="accordion-body">
+                            <div class="subsortingSection">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="fabricCotton">
+                                    <label class="form-check-label" for="fabricCotton">Cotton</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="fabricLinen">
+                                    <label class="form-check-label" for="fabricLinen">Linen</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="fabricSilk">
+                                    <label class="form-check-label" for="fabricSilk">Silk</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="fabricVelvet">
+                                    <label class="form-check-label" for="fabricVelvet">Velvet</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="fabricRayon">
+                                    <label class="form-check-label" for="fabricRayon">Rayon</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="fabricPolyester">
+                                    <label class="form-check-label" for="fabricPolyester">Polyester</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="fabricShiffon">
+                                    <label class="form-check-label" for="fabricShiffon">Shiffon</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="fabricKnitted">
+                                    <label class="form-check-label" for="fabricKnitted">Knitted</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Neckline -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="necklineHeading">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#necklineCollapse" aria-expanded="false" aria-controls="necklineCollapse">
+                            Neckline
+                        </button>
+                    </h2>
+                    <div id="necklineCollapse" class="accordion-collapse collapse" aria-labelledby="necklineHeading" data-bs-parent="#filterAccordion">
+                        <div class="accordion-body">
+                            <div class="subsortingSection">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="necklineRound">
+                                    <label class="form-check-label" for="necklineRound">Round Neck</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="necklineV">
+                                    <label class="form-check-label" for="necklineV">V Neck</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="necklinePolo">
+                                    <label class="form-check-label" for="necklinePolo">Polo Neck</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="necklineOneShoulder">
+                                    <label class="form-check-label" for="necklineOneShoulder">One Shoulder</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="necklineSquare">
+                                    <label class="form-check-label" for="necklineSquare">Square Neck</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="necklineSpaghetti">
+                                    <label class="form-check-label" for="necklineSpaghetti">Spaghetti</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="necklineHalter">
+                                    <label class="form-check-label" for="necklineHalter">Halter Neck</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="necklineTieUp">
+                                    <label class="form-check-label" for="necklineTieUp">Tie-up</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Buttons -->
+            <div class="filterFooter">
+                <button class="clearBtn">CLEAR</button>
+                <button class="viewBtn">VIEW [221]</button>
+            </div>
+        </div>
+    </div> *@
+</div>
+
+<div class="col-lg-12">
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+            <div class="row allcloths">
+                @if (Model != null && Model.List.Count > default(int))
+                {
+                    foreach (var item in Model.List)
+                    {
+                        <div class="col-lg-6 col-xl-4 col-md-6">
+                            <a href="@Url.Action("Index", "ProductDetails", new { id = item.Id })" class="myClothBox">
+                                <div class="productWrapper">
+                                    <div class="myClothBoxImages">
+                                        <img src="data:image/jpg;base64,@item.ImageBase64String" alt="" class="img-fluid" loading="lazy" />
+                                    </div>
+                                    <div class="BestSellarTab">
+                                        <p><i class="fas fa-star"></i>Bestsellar</p>
+                                    </div>
+                                </div>
+                                <div class="myClothBoxDescription">
+                                    <h2>@item.Name</h2>
+                                    <div class="price-box-container">
+                                        <span class="product-price">@item.DiscountedPriceFormatted</span>
+                                        <span class="originalPriceBox">@item.SellPriceFormatted</span>
+                                    </div>
+                                    @* <span class="product-price">@item.UnitPrice</span> *@
+                                </div>
+                            </a>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(".dropdown-toggle").on("click", function () {
+               let $icon = $(this).find("i");
+
+               if ($icon.hasClass("fa-plus")) {
+                       $icon.removeClass("fa-plus").addClass("fa-minus");
+               } else {
+                       $icon.removeClass("fa-minus").addClass("fa-plus");
+               }
+       });
+
+       // Optional: reset icon when dropdown closes
+       $(".dropdown-toggle").on("blur", function () {
+               let $icon = $(this).find("i");
+               $icon.removeClass("fa-minus").addClass("fa-plus");
+       });
+</script>

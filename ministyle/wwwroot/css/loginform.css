@@ -1,0 +1,126 @@
+.loginSection {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: #00DBDE;
+    background-image: linear-gradient(45deg, #00DBDE 0%, #FC00FF 100%);
+}
+
+.loginForm {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 50px;
+    background: #ffffff;
+    border-radius: 10px;
+    /* width: 500px; */
+    min-height: 500px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.loginformHeading {
+    position: absolute;
+    top: -70px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #f1f1f1;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .loginformHeading img {
+        height: 100px;
+    }
+
+.formrow{
+    margin-top: 50px;
+}
+
+.formsection {
+    margin-bottom: 25px;
+}
+
+    .formsection label {
+        font-size: 16px;
+        color: #101010;
+        letter-spacing: 0.5px;
+    }
+
+.form-gap {
+    position: relative;
+    min-width: 440px;
+    border:1px solid transparent;
+}
+
+    .form-gap:focus {
+        border-color: #00DBDE !important;
+    }
+
+    .form-gap i {
+        font-size: 18px;
+        position: absolute;
+        left: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 40px;
+        width: 40px;
+        background: #d3d3d3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #101010;
+    }
+
+    .form-gap input {
+        min-height: 50px;
+        padding-left: 50px;
+        border: 1px solid #a9a9a9;
+        border-radius: 0;
+    }
+
+.formrow .form-control:focus {
+    border-color: #00DBDE !important;
+    outline: 0;
+    box-shadow: none !important;
+}
+
+.form-check-input:focus:checked {
+    box-shadow: none !important;
+}
+
+.form-check-input:checked {
+    box-shadow: none !important;
+}
+.form-check-input {
+    box-shadow: none !important;
+}
+
+.formsection.contentitemdiv {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+    /*flex-direction: column;*/
+    gap: 20px;
+}
+
+.form-check-input:checked {
+    background-color: #00DBDE;
+    border-color: #00DBDE;
+}

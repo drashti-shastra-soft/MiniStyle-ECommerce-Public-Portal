@@ -1,0 +1,302 @@
+﻿@model ministyle.Domain.ProductViewModel
+@{
+    ViewBag.Title = ($"{Model.Product.Name} | For Girl | Mini Style Surat");
+    ViewBag.MetaDescription = ($"Buy {Model.Product.Name} from Mini Style, Surat. Ideal for girls. Custom designs available on request.");
+    ViewBag.MetaKeywords = ($"{Model.Product.Name}, girls [Category Name] for 2-12 Years, Mini Style {Model.Product.Name}, kids clothing Surat");
+}
+
+<style>
+    .original-price {
+        position: relative;
+        color: #a4a4a4 !important;
+        margin-left: 8px;
+        text-decoration: line-through;
+    }
+</style>
+
+@Html.HiddenFor(m => m.Product.Id)
+@Html.HiddenFor(m => m.Product.Code)
+@Html.HiddenFor(m => m.ProductPrice.SellPrice)
+@Html.HiddenFor(m => m.ProductPrice.DiscountPercentage)
+@Html.Hidden("Color")
+    
+<section class="myproductsSection section-gap">
+    <div class="WrapperContainer">
+        <div class="container-fluid">
+            <div class="row" id="productRow">
+                <div class="col-lg-6">
+                    <div class="InnerClothSliderSection">
+                        @{
+                            await Html.RenderPartialAsync("_Images", Model.ProductImages);
+                        }
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="productInnerDescription">
+                        <h3>@Model.Product.Name</h3>
+
+                        <div class="Paragraph">
+                            <p>@Model.Product.ShortInfo</p>
+                        </div>
+
+                        <div class="priceTable PriceIndexTab">
+                            @{
+                                await Html.RenderPartialAsync("_Price", Model.ProductPrice);
+                            }
+                        </div>
+
+                        <div class="priceTable">
+                            @{
+                                await Html.RenderPartialAsync("_Color", Model.Color);
+                            }
+                        </div>
+
+                        <div class="priceTable">
+                            <h4>Size</h4>
+                            <div class="size-selector">
+                                <div class="sizeChartsection">
+                                    <a href="javascript:void(0)" class="button btn-size-chart" data-product-id="@Model.Product.Id">
+                                        <i class="fas fa-info"></i>
+                                    </a>
+                                </div>
+                                @{
+                                    await Html.RenderPartialAsync("_AgeGroup", Model.AgeGroup);
+                                }
+                            </div>
+                        </div>
+
+                        <hr />
+
+                        <div class="QuantityAddWrapper">
+                            <div class="quantityTable">
+                                <div class="quantity-container space-x-2">
+                                    <a href="javascript:void(0);" class="quantity-btn" onclick="changeQuantity(this, -1)">
+                                        <i class="fas fa-minus"></i>
+                                    </a>
+                                    <input type="text" class="quantity-input" value="1" readonly>
+                                    <a href="javascript:void(0);" class="quantity-btn" onclick="changeQuantity(this, 1)">
+                                        <i class="fas fa-plus"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="contentitemdiv">
+                                <a class="button buttondione" href="javascript:void(0);">
+                                    <span>Add Item</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="productDetails">
+                            @{
+                                await Html.RenderPartialAsync("_ProductDetail", Model.ProductDetail);
+                            }
+                        </div>
+
+                        <div class="clothing-summery">
+                            @{
+                                await Html.RenderPartialAsync("_ClothingSummary");
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Size Chart Modal Container -->
+<div>
+    <div id="divSizeChart"></div>
+</div>
+
+
+<script>
+    let swiperMain;
+    let swiperThumb;
+
+    $(document).ready(function () {
+        // Add to cart button
+        $('.buttondione').on('click', function (e) {
+            e.preventDefault();
+            if (fnValid()) {
+                fnAddToCart();
+            }
+        });
+
+        // Product color selection
+        $('.product-color').on('click', function (e) {
+            e.preventDefault();
+            const productId = parseInt($('#Product_Id').val());
+            const productColorId = parseInt($(this).data('id'));
+            $('#Color').val($(this).val());
+            if (productColorId > 0) {
+                fnFetchImages(productId, productColorId);
+            }
+        });
+
+        // Format age group dropdown
+        $("#ddlAgeGroup option").each(function () {
+            let text = $(this).text().trim();
+            text = text.replace(/Month/i, "M").replace(/Year/i, "Y");
+            $(this).text(text);
+        });
+
+        // Format size option labels
+        $(".size-option span").each(function () {
+            let text = $(this).text().trim();
+            if (/^\d+\s*Years?$/i.test(text)) {
+                $(this).text(text.replace(/(\d+)\s*Years?/i, "$1Y"));
+            } else if (/^\d+\s*Months?$/i.test(text)) {
+                $(this).text(text.replace(/(\d+)\s*Months?/i, "$1M"));
+            }
+        });
+
+        // Size chart modal trigger
+        $('.btn-size-chart').on('click', function () {
+            $.ajax({
+                url: `/ProductDetails/GetProductChart`,
+                type: "GET",
+                dataType: "html",
+                beforeSend: function () {
+                    $('#loading-element').show();
+                },
+                success: function (data) {                    
+                    if (data) {
+                        $('#divSizeChart').html(data);                        
+                        $('#ProductId').val($('#Product_Id').val());
+                        const sizeChartModal = new bootstrap.Modal(document.getElementById('sizeChartModal'));
+                        sizeChartModal.show();
+                    }
+                },
+                error: function () {
+                    console.error("Failed to load size chart modal.");
+                },
+                complete: function () {
+                    $('#loading-element').hide();
+                }
+            });
+        });
+    });
+
+    function fnFetchImages(productId, productColorId) {
+        $.ajax({
+            url: `/ProductDetails/GetProductImages?productId=${productId}&productColorId=${productColorId}`,
+            type: "GET",
+            dataType: "json",
+            beforeSend: function () {
+                $('#loading-element').show();
+            },
+            success: function (data) {
+                $('#hiddenColorId').val(productColorId);
+                const mainContainer = $('#swiperContainer');
+                const thumbContainer = $('.MyClothSliderThumb .swiper-wrapper');
+
+                mainContainer.empty();
+                thumbContainer.empty();
+
+                (data.value || []).forEach(function (item) {
+                    const base64 = item.base64String;
+                    const mimeType = item.mimeType || 'image/jpeg';
+
+                    const mainSlide = `<div class="swiper-slide"><img src="data:${mimeType};base64,${base64}" class="img-fluid" /></div>`;
+                    const thumbSlide = `<div class="swiper-slide"><img src="data:${mimeType};base64,${base64}" /></div>`;
+
+                    mainContainer.append(mainSlide);
+                    thumbContainer.append(thumbSlide);
+                });
+
+                if (swiperThumb) swiperThumb.destroy(true, true);
+                swiperThumb = new Swiper(".MyClothSliderThumb", {
+                    spaceBetween: 10,
+                    slidesPerView: 3,
+                    freeMode: true,
+                    loop: true,
+                    watchSlidesProgress: true,
+                });
+
+                if (swiperMain) swiperMain.destroy(true, true);
+                swiperMain = new Swiper(".MyClothSlider", {
+                    spaceBetween: 10,
+                    grabCursor: true,
+                    loop: true,
+                    effect: "fade",
+                    navigation: {
+                        nextEl: ".swiper-button-next",
+                        prevEl: ".swiper-button-prev",
+                    },
+                    thumbs: {
+                        swiper: swiperThumb,
+                    },
+                });
+                
+            },
+            error: function () {
+                $('#swiperContainer').empty();
+                $('.MyClothSliderThumb .swiper-wrapper').empty();
+            },
+            complete: function () {
+                $('#loading-element').hide();
+            }
+        });
+    }
+
+    function fnValid() {
+
+        let isValid = true;
+        const ageGroup = $('#ddlAgeGroup').val();
+        const color = $('#Color').val();
+
+        if (!color) {
+            $("#spnColor").text('Please select a color!');
+            isValid = false;
+        } else {
+            $("#spnColor").empty();
+        }
+
+        if (!ageGroup) {
+            $("#spnAgeGroup").text('Please select an age group!');
+            isValid = false;
+        } else {
+            $("#spnAgeGroup").empty();
+        }
+
+        return isValid;
+    }
+
+    function fnAddToCart() {
+        const mCart = {
+            ProductId: $('#Product_Id').val(),
+            ProductCode: $('#Product_Code').val(),
+            Color: $('#Color').val(),
+            UnitPrice: $('#ProductPrice_SellPrice').val(),
+            DiscountPercentage: $('#ProductPrice_DiscountPercentage').val(),
+            Qty: $('.quantity-input').val(),
+            Size: $('#ddlAgeGroup').val()
+        };
+
+        $.ajax({
+            url: '@Url.Action("AddToCart", "ProductDetails")',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(mCart),
+            success: function (response) {
+                showToastr(response.notificationType, response.notificationMsg);
+            },
+            error: function (xhr, status, error) {
+                showToastr('error', error);
+            }
+        });
+    }
+
+    function changeQuantity(button, delta) {
+        const container = button.closest('.quantity-container');
+        const input = container.querySelector('.quantity-input');
+        let current = parseInt(input.value) || 1;
+        const min = 1;
+        const max = 10;
+        let updated = current + delta;
+        if (updated < min) updated = min;
+        if (updated > max) updated = max;
+        input.value = updated;
+    }
+</script>

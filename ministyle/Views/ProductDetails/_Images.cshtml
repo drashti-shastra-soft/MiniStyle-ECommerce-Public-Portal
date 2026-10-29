@@ -1,0 +1,47 @@
+﻿@model List<ministyle.Domain.ProductImage>
+
+<div class="swiper MyClothSlider">
+    <div class="swiper-wrapper" id="swiperContainer">
+        @foreach (var item in Model)
+        {
+            @Html.Partial("_ImageSlide", null, new ViewDataDictionary(ViewData) { { "Base64", item.Base64String }, { "CssClass", "img-fluid" } })
+        }
+    </div>
+    <div class="swiper-button-next"><i class="fas fa-chevron-right"></i></div>
+    <div class="swiper-button-prev"><i class="fas fa-chevron-left"></i></div>
+</div>
+
+<div thumbsSlider="" class="swiper MyClothSliderThumb">
+    <div class="swiper-wrapper">
+        @foreach (var item in Model)
+        {
+            @Html.Partial("_ImageSlide", null, new ViewDataDictionary(ViewData) { { "Base64", item.Base64String }, { "CssClass", "" } })
+        }
+    </div>
+</div>
+
+<script>
+    // Thumbnail Swiper (initialize first)
+    swiperThumb = new Swiper(".MyClothSliderThumb", {
+        spaceBetween: 10,
+        slidesPerView: 3,
+        freeMode: true,
+        loop: true,
+        watchSlidesProgress: true,
+    });
+
+    // Main Swiper
+    swiperMain = new Swiper(".MyClothSlider", {
+        spaceBetween: 10,
+        grabCursor: true,
+        loop: true,
+        effect: "fade",
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        thumbs: {
+            swiper: swiperThumb,
+        },
+    });
+</script>

@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "Payment Failed | Mini Style | Kids Clothing Online";
+    ViewBag.MetaDescription = "Your payment could not be processed at Mini Style. Please retry to complete your kids clothing order securely.";
+    ViewBag.MetaKeywords = "Mini Style payment failed, kids clothing payment issue, retry payment, newborn clothes, girls clothes, boys clothes, custom kids clothing";
+}
+
+<style>
+    .thankyou-card {
+        background: rgb(225 195 195 / 20%);
+        border-radius: 1.5rem;
+        text-align: center;
+        padding: 40px 30px;
+        max-width: 450px;
+        width: 100%;
+        animation: fadeInUp 0.8s ease;
+        border: 2px dashed #dc3545; /* Red border for failure */
+    }
+
+    /* Failure cross animation */
+    .checkmark {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        display: inline-block;
+        position: relative;
+        background: #dc3545; /* Red background */
+        margin-bottom: 20px;
+        animation: scaleUp 0.5s ease forwards;
+    }
+
+        .checkmark i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 30px;
+            color: #fff;
+        }
+
+    .order-info {
+        background: #f8f9fa;
+        border-radius: 1rem;
+        padding: 15px;
+        margin: 20px 0;
+        font-size: 0.95rem;
+    }
+
+        .order-info p {
+            margin-bottom: 10px !important;
+        }
+
+    .thankyou-card h1 {
+        font-weight: 700;
+        font-size: 2rem;
+        margin-bottom: 15px;
+        color: #dc3545; /* Highlight red for failure */
+    }
+
+    .thankyou-card p {
+        color: #6c757d;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+</style>
+
+<section class="aboutusSection section-gap">
+    <div class="WrapperContainer">
+        <img src="/images/vector/cloud.webp" class="img-fluid cloudfloat cloud1" loading="lazy">
+        <img src="/images/vector/cloud.webp" class="img-fluid cloudfloat cloud2" loading="lazy">
+        <img src="/images/vector/horse.webp" class="img-fluid horseFloat" loading="lazy">
+        <img src="/images/vector/lion.webp" class="img-fluid lionFloat" loading="lazy">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4 offset-lg-4 d-flex justify-content-center">
+                    <div class="thankyou-card">
+                        <div class="checkmark">
+                            <i class="fas fa-times"></i>
+                        </div>
+                        <h1>Payment Failed!</h1>
+                        <p>Oops! Something went wrong. Please retry your payment to complete the order.</p>
+                        <div class="order-info text-start">
+                            <p><strong>Order ID:</strong> #123456</p>
+                            <p><strong>Payment Status:</strong> Failed</p>
+                            <p><strong>Action Required:</strong> Retry payment</p>
+                        </div>
+                        <a href="@Url.Action("Index", "Checkout")" class="btn shop-now-btn">TRY AGAIN</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

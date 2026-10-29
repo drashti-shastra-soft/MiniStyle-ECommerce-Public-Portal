@@ -1,0 +1,18 @@
+﻿@model List<ministyle.Domain.ProductAgeGroup>
+
+@if (Model != null && Model.Count > 0)
+{
+    <div class="myagegroup-dropdown">
+
+        <select name="size" class="form-select" id="ddlAgeGroup">
+            <option value="">Select Age Group</option>
+            @foreach (var item in Model)
+            {
+                <option value="@item.AgeGroup">@item.AgeGroup</option>
+            }
+        </select>
+        <span id="spnAgeGroup" class="text-danger"></span>
+    </div>
+}
+
+
